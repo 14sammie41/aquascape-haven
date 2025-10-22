@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        {% for aquascape in aquascapes %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="{{ aquascape.image.url }}" alt="{{ aquascape.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ aquascape.title }}</h5>
+                    <p><small>{{ aquascape.desciption }}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
