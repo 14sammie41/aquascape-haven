@@ -1,0 +1,41 @@
+/* Google fonts import as attributed in README.md */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* CSS variables for color scheme and fonts from Google fonts */
+:root {
+    --primary-font: 'Playfair Display', sans-serif;
+    --secondary-font: 'Lato', sans-serif;
+    --primary-color: #5b7553;
+    --secondary-color: #c97b63;
+    --text-color: #2b2b2b;
+    --background-color: #d4b483;
+    --highlight-color: #0f4c5c;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: var(--highlight-color) !important;
+    color: var(--text-color) !important;
+    font-family: var(--primary-font);
+}
+
+/* General body style */
+body {
+    background-color: var(--background-color) !important;
+}
+
+/* Card styles */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    position: center;
+}
