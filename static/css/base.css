@@ -24,6 +24,18 @@ body {
     background-color: var(--background-color) !important;
 }
 
+/* Header styles */
+header {
+    font-family: var(--primary-font);
+    color: var(--background-color);
+}
+
+/* Home screen styling */
+.go-to {
+    font-family: var(--primary-font);
+    color: var(--text-color);
+}
+
 /* Card styles */
 .card {
     display: flex;
