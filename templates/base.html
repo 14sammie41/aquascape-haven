@@ -72,14 +72,19 @@
     {% endblock %}
 
     {% if request.path == '/' %}
-    <header class="bg-dark text-white text-center py-3">
+    <header class="bg-dark text-white text-center py-2">
         <h1 class="display-4">Dive into the Art of Aquascaping</h1>
         <p class="lead">Explore, create, and connect with fellow aquascapers.</p>
     </header>
 
-    <section class="container py-5">
+    <section class="container-fluid py-5">
         <div class="row text-center">
-            <div class="go-to col-md-6">
+            <div class="col-md-3">
+                <a href="#">
+                    <img src="{{ aquascape.image.url }}" alt="">
+                </a>
+            </div>
+            <div class="go-to col-md-3">
                 <h3 id="community">Haven Community</h3>
                 <p>Come and join our group of aquascaping people! Here to help, inspire and natter!</p>
                 <a href="#" class="btn btn-outline">Let's Talk</a>
