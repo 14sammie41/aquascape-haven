@@ -6,6 +6,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name='base.html'), name='home'),
-    path('gallery/', include('gallery.urls'))
+    path('community/', include('community.urls')),
+    path('gallery/', include('gallery.urls')),
+    path('marketplace/', include('marketplace.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

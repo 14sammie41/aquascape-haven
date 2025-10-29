@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header class="bg-dark text-white text-center py-2">
+    <h1 class="display-4">Aquascape Haven Community</h1>
+    <p class="lead">Welcome to our hub of chatter for all things aquatic!</p>
+</header>
+
+<section>
+    <div class="posting">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Post</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="chatting">
+        {% for post in posts %}
+            <div class="post mb-3 p-3 border rounded">
+                <p><strong>{{ post.user.username }}</strong> <em>{{ post.created_at|date:"M d, Y H:i" }}</em></p>
+                <p>{{ post.content }}</p>
+            </div>
+        {% empty %}
+            <p>No posts yet. Be the first to share!</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

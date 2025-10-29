@@ -59,11 +59,31 @@
                                 Gallery
                             </a>
                         </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="fas fa-user"></i>
+                                    My Account
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_logout' %}">
+                                    Logout
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_login' %}">
+                                    Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_signup' %}">
+                                    Sign Up
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
         </div>
     </nav>
@@ -77,36 +97,84 @@
         <p class="lead">Explore, create, and connect with fellow aquascapers.</p>
     </header>
 
-    <section class="container-fluid py-5">
-        <div class="row text-center">
-            <div class="col-md-3">
+    <section class="container-fluid py-4">
+        <div class="row text-center pb-4">
+            <div class="col-md-2 pb-4">
                 <a href="#">
-                    <img src="{{ aquascape.image.url }}" alt="">
+                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
                 </a>
             </div>
-            <div class="go-to col-md-3">
+            <div class="go-to col-md-4 pb-4">
                 <h3 id="community">Haven Community</h3>
                 <p>Come and join our group of aquascaping people! Here to help, inspire and natter!</p>
                 <a href="#" class="btn btn-outline">Let's Talk</a>
             </div>
-            <div class="go-to col-md-6">
+            <div class="col-md-2 pb-4">
+                <a href="#">
+                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                </a>
+            </div>
+            <div class="go-to col-md-4 pb-4">
                 <h3 id="community">Best of the Best</h3>
                 <p>A little bit of competition is healthy for us all, vote on what you like most or show us what you've got!</p>
                 <a href="#" class="btn btn-outline">Winner!</a>
             </div>
-            <div class="go-to col-md-6">
+            <div class="go-to col-md-4 pb-4">
                 <h3 id="community">The Gallery</h3>
                 <p>See some of the winners and some of the most beautiful aquascapes from our community.</p>
                 <a href="#" class="btn btn-outline">Let's See</a>
             </div>
-            <div class="go-to col-md-6">
+            <div class="col-md-2 pb-4">
+                <a href="#">
+                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                </a>
+            </div>
+            <div class="go-to col-md-4 pb-4">
                 <h3 id="community">Marketplace</h3>
                 <p>We all love to shope so come and see some of our special deals and get what your fish need!</p>
                 <a href="#" class="btn btn-outline">Shopping!</a>
             </div>
+            <div class="col-md-2 pb-4">
+                <a href="#">
+                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                </a>
+            </div>
         </div>
     </section>
     {% endif %}
-    
+    <footer>
+        <section class="bg-dark text-white text-center py-1">
+            <div class="container">
+                <div class="row my-4">
+                    <div class="col social-links px-2">
+                        <a
+                        href="https://www.linkedin.com/in/samantha-spencer-56521173/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Samantha Spencer's LinkedIn profile (opens in new tab)"
+                        >
+                        <i class="fa-brands fa-linkedin fa-lg"></i>
+                        </a>
+                        <a
+                        href="https://github.com/14sammie41"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Samantha Spencer's GitHub profile (opens in new tab)"
+                        >
+                        <i class="fa-brands fa-square-github fa-lg"></i>
+                        </a>
+                        <a
+                        href="https://www.facebook.com/samanthaelsiespencer/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Samantha Spencer's Facebook profile (opens in new tab)"
+                        >
+                        <i class="fa-brands fa-square-facebook fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
 </body>
 </html>

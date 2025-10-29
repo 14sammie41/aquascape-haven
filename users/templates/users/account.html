@@ -1,0 +1,17 @@
+{% load static %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header class="bg-dark text-white text-center py-2">
+    <h1 class="display-4">My Account</h1>
+    <p class="lead">Your personal aqua space...</p>
+</header>
+
+<div>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <a class="btn btn-outline-danger mt-3" href="{% url 'logout' %}">Logout</a>
+</div>
+
+{% endblock %}

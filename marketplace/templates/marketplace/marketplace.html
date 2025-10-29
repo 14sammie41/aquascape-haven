@@ -1,0 +1,29 @@
+{% load static %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header class="bg-dark text-white text-center py-2">
+    <h1 class="display-4">Aquascaping Marketplace</h1>
+    <p class="lead">Time to shop for all your wants and needs...</p>
+</header>
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p><strong>£{{ product.price|floatformat:2|divisibleby:100 }}</strong></p>
+                    <a href="#" class="btn btn-success">Buy now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
