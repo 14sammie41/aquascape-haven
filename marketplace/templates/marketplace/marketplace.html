@@ -8,12 +8,12 @@
     <p class="lead">Time to shop for all your wants and needs...</p>
 </header>
 
-<div class="container py-2">
-    <div class="row">
+<div class="container py-2 overflow-hidden">
+    <div class="row g-4">
         {% for product in products %}
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm h-100 product">
-                <img class="card-img-top product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="col-md-4 mx-auto d-block">
+            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="card h-100 product">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description|truncatewords:5 }}</p>
