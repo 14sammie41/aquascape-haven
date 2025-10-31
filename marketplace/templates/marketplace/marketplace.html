@@ -1,5 +1,5 @@
-{% load static %}
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -8,17 +8,17 @@
     <p class="lead">Time to shop for all your wants and needs...</p>
 </header>
 
-<div class="container">
+<div class="container py-2">
     <div class="row">
         {% for product in products %}
         <div class="col-md-4">
-            <div class="card mb-4">
-                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="card mb-4 shadow-sm h-100 product">
+                <img class="card-img-top product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.title }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p><strong>£{{ product.price|floatformat:2|divisibleby:100 }}</strong></p>
-                    <a href="#" class="btn btn-success">Buy now</a>
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:5 }}</p>
+                    <p><strong>£{{ product.display_price|floatformat:2 }}</strong></p>
+                    <a href="{% url 'create_checkout_session' product.id %}" class="btn btn-success">Buy now</a>
                 </div>
             </div>
         </div>

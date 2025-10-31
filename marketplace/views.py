@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
+from django.contrib import messages
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'marketplace/product_list.html', {'products': products})
+    return render(request, 'marketplace/marketplace.html', {'products': products})
 
 def create_checkout_session(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -28,3 +29,9 @@ def create_checkout_session(request, product_id):
         cancel_url=request.build_absolute_uri('/marketplace/cancel/'),
     )
     return redirect(checkout_session.url, code=303)
+
+def success(request):
+    return render(request, 'marketplace/success.html')
+
+def cancel(request):
+    return render(request, 'marketplace/cancel.html')

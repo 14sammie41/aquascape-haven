@@ -11,4 +11,5 @@ urlpatterns = [
     path('community/', include('community.urls')),
     path('gallery/', include('gallery.urls')),
     path('marketplace/', include('marketplace.urls')),
+    path('success/', TemplateView.as_view(template_name='marketplace/success.html'), name='success'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
