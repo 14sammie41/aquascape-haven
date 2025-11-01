@@ -11,14 +11,19 @@
 <div class="container py-2">
     <div class="row g-4">
         {% for product in products %}
-        <div class="col-md-4 mx-auto d-block">
-            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
-            <div class="card h-100 product">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description|truncatewords:5 }}</p>
-                    <p><strong>£{{ product.display_price|floatformat:2 }}</strong></p>
-                    <a href="{% url 'create_checkout_session' product.id %}" class="btn btn-success">Buy now</a>
+        <div class="col-md-4 h-100">
+            <div class="product-wrapper">
+                <img class="product-image mx-auto d-block" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <div class="card h-100 product">
+                    <div class="card-body w-100">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|truncatechars:25 }}</p>
+                        <p><strong>£{{ product.display_price|floatformat:2 }}</strong></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'product_view' product.id %}" class="btn btn-outline-primary">View</a>
+                            <a href="{% url 'add_to_basket' product.id %}" class="btn btn-success">Buy now</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

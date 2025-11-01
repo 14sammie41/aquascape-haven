@@ -35,3 +35,7 @@ def success(request):
 
 def cancel(request):
     return render(request, 'marketplace/cancel.html')
+
+def product_view(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'marketplace/product_view.html', {'product': product})

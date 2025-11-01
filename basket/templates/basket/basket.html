@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-4">
+    <h2>Your Basket</h2>
+    {% if products %}
+        <ul class="list-group mb-3">
+            {% for product in products %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ product.name }} × {{ product.quantity }}
+                    <span>£{{ product.subtotal|floatformat:2 }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <h4>Total: £{{ total|floatformat:2 }}</h4>
+        <a href="{% url 'checkout_home' %}" class="btn btn-success">Proceed to Checkout</a>
+    {% else %}
+        <p>Your basket is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

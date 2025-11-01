@@ -61,6 +61,15 @@ header {
 }
 
 /* Product styles */
+
+    /* This will keep the card underneath the image consistently aligned */
+.product-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .product {
     color: var(--text-color) !important;
     background-color: var(--background-color) !important;
@@ -73,6 +82,8 @@ header {
     border-radius: 1rem;
     padding: 4px;
     object-fit: cover;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer styles */
