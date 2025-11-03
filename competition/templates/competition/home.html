@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-4 text-center">
+    <h2>Last Month's Winner</h2>
+    {% if winner %}
+        <div class="card pb-4">
+            <img class="img-fluid rounded mb-3" src="{{ winner.image.url }}" alt="{{ winner.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ winner.title }}</h5>
+                <p class="card-text">{{ winner.description }}</p>
+            </div>
+        </div>
+    {% else %}
+        <p>No winner selected for last month.</p>
+    {% endif %}
+    <a href="{% url 'competition_vote' %}" class="btn btn-primary">Vote for next month</a>
+    <a href="{% url 'competition_enter' %}" class="btn btn-success">Enter to win!</a>
+</div>
+
+{% endblock %}
