@@ -10,7 +10,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='base.html'), name='home'),
     path('basket/', include('basket.urls')),
     path('checkout/', include('checkout.urls')),
-    path('competition/', include('competition.urls')),
+    path('home/', include('competition.urls')),
     path('community/', include('community.urls')),
     path('gallery/', include('gallery.urls')),
     path('marketplace/', include('marketplace.urls')),
