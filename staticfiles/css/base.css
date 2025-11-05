@@ -1,0 +1,103 @@
+/* Google fonts import as attributed in README.md */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* CSS variables for color scheme and fonts from Google fonts */
+:root {
+    --primary-font: 'Playfair Display', sans-serif;
+    --secondary-font: 'Lato', sans-serif;
+    --primary-color: #5b7553;
+    --secondary-color: #c97b63;
+    --text-color: #2b2b2b;
+    --background-color: #d4b483;
+    --highlight-color: #0f4c5c;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: var(--highlight-color) !important;
+    color: var(--text-color) !important;
+    font-family: var(--primary-font);
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.4em 0.6em;
+}
+
+/* General body style */
+body {
+    background-color: var(--background-color) !important;
+}
+
+/* Header styles */
+header {
+    font-family: var(--primary-font);
+    color: var(--background-color);
+}
+
+/* Home screen styling */
+.go-to {
+    font-family: var(--primary-font);
+    color: var(--text-color);
+}
+
+.home-image {
+    border-radius: 1rem;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+/* Card styles */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    position: center;
+}
+
+/* Product styles */
+
+    /* This will keep the card underneath the image consistently aligned */
+.product-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product {
+    color: var(--text-color) !important;
+    background-color: var(--background-color) !important;
+    font-family: var(--secondary-font) !important;
+}
+
+.product-image {
+    aspect-ratio: 4/3;
+    border: 2px solid var(--text-color);
+    border-radius: 1rem;
+    padding: 4px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styles */
+footer .social-links a {
+    font-family: var(--primary-font) !important;
+    color: var(--background-color) !important;
+    size: 2rem;
+}
+
+.fa-lg {
+    font-size: 2rem !important;
+}

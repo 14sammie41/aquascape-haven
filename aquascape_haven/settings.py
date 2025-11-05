@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-zb#64sjq21+l5yk=4h&^8bep04zxpwd@z0*n7h98(d#^n+1j_^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aquascape-haven.herokuapp.com']
+ALLOWED_HOSTS = ['aquascape-haven.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -92,14 +92,12 @@ WSGI_APPLICATION = 'aquascape_haven.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-
-# Override default DB from DATABASE_URL env var if it exists
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
