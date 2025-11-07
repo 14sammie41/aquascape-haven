@@ -1,1 +1,1 @@
-web: gunicorn aquascape_haven.wsgi
+web: gunicorn aquascape_haven.wsgi:application
