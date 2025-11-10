@@ -17,6 +17,8 @@
     {% block js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/524dbc89dc.js" crossorigin="anonymous"></script>
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     <title>Aquascape Haven</title>
@@ -187,5 +189,10 @@
             </div>
         </section>
     </footer>
+
+    {% block postloadjs %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %}
 </body>
 </html>

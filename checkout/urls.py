@@ -1,7 +1,11 @@
-from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
 from . import views
 
+app_name = 'checkout'
+
 urlpatterns = [
-    path('', views.checkout, name='checkout_home'),
-    path('success/<order_number>/', views.checkout_success, name='checkout_success'),
+    path('', views.checkout, name='checkout'),
+    path('success/', views.success, name='success'),
+    path('cancel/', views.cancel, name='cancel'),
 ]

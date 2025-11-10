@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>Payment Cancelled ❌</h2>
+  <p>Your payment was not completed. You can try again or adjust your basket.</p>
+  <a href="{% url 'basket:view' %}">Return to Basket</a>
+{% endblock %}
