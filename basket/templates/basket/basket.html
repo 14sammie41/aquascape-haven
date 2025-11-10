@@ -15,7 +15,7 @@
             {% endfor %}
         </ul>
         <h4>Total: £{{ total|floatformat:2 }}</h4>
-        <a href="{% url 'checkout' %}" class="btn btn-success">Proceed to Checkout</a>
+        <a href="{% url 'checkout:checkout' %}" class="btn btn-success">Proceed to Checkout</a>
     {% else %}
         <p>Your basket is empty.</p>
     {% endif %}
