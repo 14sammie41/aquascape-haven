@@ -32,10 +32,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
-    'aquascape-haven.herokuapp.com',
-    'localhost',
+    'aquascape-haven.herokuapp.com', # Heroku app domain
+    'localhost', # local development and listening for Stripe webhooks
     '127.0.0.1',
-    'aquascape-haven-e3d516166de9.herokuapp.com',
+    'aquascape-haven-e3d516166de9.herokuapp.com', # alternate Heroku domain
     ]
 
 
@@ -183,6 +183,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_CURRENCY = 'gbp'
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
 
 # Crispy Forms configuration
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

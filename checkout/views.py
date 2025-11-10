@@ -113,8 +113,8 @@ def stripe_webhook(request):
     except stripe.error.SignatureVerificationError as e:
         return JsonResponse({'status': 'invalid signature'}, status=400)
 
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-        print(f"Payment was successful for session {session['id']}")
+    if event['type'] == 'payment_intent.succeeded':
+        intent = event['data']['object']
+        print(f"Payment was successful for intent {intent['id']}")
 
     return JsonResponse({'status': 'success'}, status=200)
