@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import community_view
+from . import views
+
+app_name = 'community'
 
 urlpatterns = [
-    path('', community_view, name='community_view'),
+    path('', views.Community, name='community'),
+    path('create/', views.create_post, name='create_post'),
 ]

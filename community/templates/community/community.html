@@ -9,26 +9,20 @@
 </header>
 
 <section>
-    <div class="posting">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Post</button>
-        </form>
+    {% for post in posts %}
+
+    <div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+        <small>Posted by {{ post.user.username }} on {{ post.created_at }}</small>
     </div>
 
-    <hr>
+    {% empty %}
 
-    <div class="chatting">
-        {% for post in posts %}
-            <div class="post mb-3 p-3 border rounded">
-                <p><strong>{{ post.user.username }}</strong> <em>{{ post.created_at|date:"M d, Y H:i" }}</em></p>
-                <p>{{ post.content }}</p>
-            </div>
-        {% empty %}
-            <p>No posts yet. Be the first to share!</p>
-        {% endfor %}
-    </div>
+    <p>No posts yet. Be the first to share!</p>
+
+    {% endfor %}
+    <a href="{% url 'community:create_post' %}">Create a new post</a>
 </section>
 
 {% endblock %}
