@@ -8,21 +8,30 @@
     <p class="lead">Welcome to our hub of chatter for all things aquatic!</p>
 </header>
 
-<section>
-    {% for post in posts %}
-
-    <div>
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p>
-        <small>Posted by {{ post.user.username }} on {{ post.created_at }}</small>
+<section class="container my-4">
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card community-card h-100 shadow-sm">
+                    {% if post.image %}
+                        <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content }}</p>
+                    </div>
+                    <div class="card-footer text-muted small">
+                        Posted by {{ post.user.username }} on {{ post.created_at }}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">No posts yet. Be the first to share!</p>
+        {% endfor %}
     </div>
-
-    {% empty %}
-
-    <p>No posts yet. Be the first to share!</p>
-
-    {% endfor %}
-    <a href="{% url 'community:create_post' %}">Create a new post</a>
+    <div class="text-center mt-4">
+        <a href="{% url 'community:create_post' %}" class="btn btn-primary">Create a new post</a>
+    </div>
 </section>
 
 {% endblock %}

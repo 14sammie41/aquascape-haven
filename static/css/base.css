@@ -49,6 +49,31 @@ header {
     overflow: hidden;
 }
 
+/* Footer styling to pin it to the bottom of the page */
+footer {
+    background-color: var(--highlight-color) !important;
+    font-family: var(--primary-font);
+    margin-top: auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+
+.social-links a {
+    font-family: var(--primary-font) !important;
+    size: 2rem;
+    text-decoration: none;
+    border: none;
+}
+
+.fa-lg {
+    font-size: 2rem !important;
+}
+
 /* Card styles */
 .card {
     display: flex;
@@ -63,6 +88,71 @@ header {
 
 .card-img-top {
     position: center;
+}
+
+/* Community post styles */
+.community-card {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.community-card:hover {
+    transform: scale(1.02);
+}
+
+.community-card .card-img-top {
+    object-fit: cover;
+    height: 200px;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.community-card .card-body {
+    padding: 1rem;
+}
+
+.community-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.community-card .card-text {
+    font-family: var(--secondary-font);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.community-card .card-footer {
+    background-color: transparent;
+    border-top: none;
+    padding: 0.75rem 1rem;
+}
+
+/* Community create post styles */
+.create-post-form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-post-form h3 {
+    font-family: var(--primary-font);
+    margin-bottom: 1.5rem;
+    color: var(--highlight-color);
+}
+
+.create-post-form input,
+.create-post-form textarea,
+.create-post-form label {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
 }
 
 /* Product styles */
@@ -89,15 +179,4 @@ header {
     object-fit: cover;
     margin-bottom: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Footer styles */
-footer .social-links a {
-    font-family: var(--primary-font) !important;
-    color: var(--background-color) !important;
-    size: 2rem;
-}
-
-.fa-lg {
-    font-size: 2rem !important;
 }
