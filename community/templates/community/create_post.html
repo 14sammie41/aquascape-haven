@@ -11,11 +11,13 @@
 
 <div class="container my-5">
     <div class="create-post-form mx-auto">
-        <h3 class="text-center mb-4">Create a New Post</h3>
+        <h3 class="text-center mb-4">{{ post|default_if_none:'Create a New Post' }}</h3>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit" class="btn btn-primary w-100 mt-3">Post</button>
+            <button type="submit" class="btn btn-primary w-100 mt-3">
+                {% if post %} Save changes{% else %}Create post{% endif %}
+            </button>
         </form>
     </div>
 </div>

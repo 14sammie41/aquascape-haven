@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -65,7 +66,7 @@ def checkout(request):
                 
             request.session['basket'] = {}
             messages.success(request, "Your order is in process now!")
-            return redirect(reverse('checkout:success'))
+            return redirect(reverse('checkout:success', args=[order.order_number]))
         else:
             messages.error(request, "There was an error with your form. Please double check your information.")
     else:
@@ -90,13 +91,25 @@ def checkout(request):
     }
     return render(request, 'checkout/checkout.html', context)
 
-
-def success(request):
+@login_required
+def success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number, email=request.user.email)
     request.session['basket'] = {}
-    return render(request, 'checkout/success.html')
+    return render(request, 'checkout/success.html', {
+        'order': order,
+        'success': True,
+    })
 
 def cancel(request):
     return render(request, 'checkout/cancel.html')
+
+@login_required
+def order_detail(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number, email=request.user.email)
+    return render(request, 'checkout/success.html', {
+        'order': order,
+        'success': False,
+    })
 
 @csrf_exempt
 def stripe_webhook(request):

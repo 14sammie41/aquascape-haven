@@ -2,7 +2,34 @@
 {% load static %}
 
 {% block content %}
-  <h2>Payment Successful 🎉</h2>
-  <p>Thank you for your order! Your basket has been cleared.</p>
-  <a href="{% url 'product_list' %}">Continue Shopping</a>
+  <div class="container my-5">
+    {% if order_success %}
+      <div class="alert alert-success">
+        🎉 Thank you! Your order was successful.
+      </div>
+    {% endif %}
+
+    <h2>Order Summary</h2>
+    <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+    <p><strong>Date:</strong> {{ order.date|date:"M d, Y H:i" }}</p>
+    <p><strong>Total:</strong> £{{ order.total }}</p>
+
+    <h3>Items</h3>
+    <ul class="list-group">
+      {% for item in order.lineitems.all %}
+        <li class="list-group-item d-flex justify-content-between">
+          {{ item.product.name }} × {{ item.quantity }}
+          <span>£{{ item.product.price }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="mt-4">Shipping Details</h3>
+    <p>{{ order.full_name }}</p>
+    <p>{{ order.street_address1 }} {{ order.street_address2 }}</p>
+    <p>{{ order.town_or_city }}, {{ order.county }}, {{ order.postcode }}</p>
+    <p>{{ order.country }}</p>
+    <br>
+    <a href="{% url 'product_list' %}">Continue Shopping</a>
+  </div>
 {% endblock %}

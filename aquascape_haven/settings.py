@@ -81,7 +81,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR / 'templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -175,9 +175,16 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_LOGIN_METHODS = 'username', 'email'
-ACCOUNT_SIGNUP_FIELDS = ["email", "username", "password1", "password2"]
+
+# Core Allauth behavior
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+# UX enhancements for smoother usage
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
 
 # Stripe requirements
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')

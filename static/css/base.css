@@ -74,6 +74,35 @@ footer {
     font-size: 2rem !important;
 }
 
+/* User styles for logging in and viewing profiles */
+.login-form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+}
+
+.login-form input,
+.login-form label {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+}
+
+.login-form a {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* Dashboard styles */
+.dashboard {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+}
+
 /* Card styles */
 .card {
     display: flex;
@@ -153,6 +182,37 @@ footer {
 .create-post-form label {
     font-family: var(--secondary-font);
     color: var(--text-color);
+}
+
+/* Competition entry form styles */
+.enter-form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.enter-form h2 {
+    font-family: var(--primary-font);
+    margin-bottom: 1.5rem;
+    color: var(--highlight-color);
+}
+
+/* Vote page styles */
+.vote-header {
+    font-family: var(--primary-font);
+    color: var(--text-color);
+}
+
+.vote-page {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Product styles */
