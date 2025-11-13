@@ -15,7 +15,12 @@
 /* Navbar styling */
 .navbar {
     background-color: var(--highlight-color) !important;
-    color: var(--text-color) !important;
+    color: lightgray !important;
+    font-family: var(--primary-font);
+}
+
+.navbar .nav-link {
+    color: lightgray !important;
     font-family: var(--primary-font);
 }
 
@@ -32,7 +37,7 @@ body {
 /* Header styles */
 header {
     font-family: var(--primary-font);
-    color: var(--background-color);
+    color: lightgray;
 }
 
 /* Home screen styling */
