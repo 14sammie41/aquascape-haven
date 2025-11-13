@@ -248,3 +248,53 @@ footer {
     margin-bottom: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .home-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .go-to {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .card .row {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        max-height: none !important;
+        height: auto !important;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .enter-form .card {
+        margin: 1rem;
+    }
+
+    .enter-form .card-body {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-title {
+        font-size: 1.25rem
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
