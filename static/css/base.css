@@ -197,6 +197,11 @@ footer {
     color: var(--text-color);
 }
 
+/* Gallery styles */
+.gallery {
+    color: lightgray !important;
+}
+
 /* Competition entry form styles */
 .enter-form {
     background-color: var(--background-color);
@@ -246,6 +251,19 @@ footer {
 
 .product-image {
     aspect-ratio: 4/3;
+    width: 100%;
+    height: 200px;
+    border: 2px solid var(--text-color);
+    border-radius: 1rem;
+    padding: 4px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-detail {
+    aspect-ratio: 4/3;
+    width: 100%;
     border: 2px solid var(--text-color);
     border-radius: 1rem;
     padding: 4px;

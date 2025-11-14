@@ -15,7 +15,12 @@
 /* Navbar styling */
 .navbar {
     background-color: var(--highlight-color) !important;
-    color: var(--text-color) !important;
+    color: lightgray !important;
+    font-family: var(--primary-font);
+}
+
+.navbar .nav-link {
+    color: lightgray !important;
     font-family: var(--primary-font);
 }
 
@@ -32,13 +37,21 @@ body {
 /* Header styles */
 header {
     font-family: var(--primary-font);
-    color: var(--background-color);
+    color: lightgray;
 }
 
 /* Home screen styling */
 .go-to {
-    font-family: var(--primary-font);
+    background-color: var(--background-color);
     color: var(--text-color);
+    font-family: var(--primary-font);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.go-to .card-body {
+    padding: 1.5rem;
 }
 
 .home-image {
@@ -47,6 +60,60 @@ header {
     width: 150px;
     object-fit: cover;
     overflow: hidden;
+}
+
+/* Footer styling to pin it to the bottom of the page */
+footer {
+    background-color: var(--highlight-color) !important;
+    font-family: var(--primary-font);
+    margin-top: auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+
+.social-links a {
+    font-family: var(--primary-font) !important;
+    size: 2rem;
+    text-decoration: none;
+    border: none;
+}
+
+.fa-lg {
+    font-size: 2rem !important;
+}
+
+/* User styles for logging in and viewing profiles */
+.login-form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+}
+
+.login-form input,
+.login-form label {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+}
+
+.login-form a {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* Dashboard styles */
+.dashboard {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
 }
 
 /* Card styles */
@@ -63,6 +130,107 @@ header {
 
 .card-img-top {
     position: center;
+}
+
+/* Community post styles */
+.community-card {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.community-card:hover {
+    transform: scale(1.02);
+}
+
+.community-card .card-img-top {
+    object-fit: cover;
+    height: 200px;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.community-card .card-body {
+    padding: 1rem;
+}
+
+.community-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.community-card .card-text {
+    font-family: var(--secondary-font);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.community-card .card-footer {
+    background-color: transparent;
+    border-top: none;
+    padding: 0.75rem 1rem;
+}
+
+/* Community create post styles */
+.create-post-form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-post-form h3 {
+    font-family: var(--primary-font);
+    margin-bottom: 1.5rem;
+    color: var(--highlight-color);
+}
+
+.create-post-form input,
+.create-post-form textarea,
+.create-post-form label {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+}
+
+/* Gallery styles */
+.gallery {
+    color: lightgray !important;
+}
+
+/* Competition entry form styles */
+.enter-form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.enter-form h2 {
+    font-family: var(--primary-font);
+    margin-bottom: 1.5rem;
+    color: var(--highlight-color);
+}
+
+/* Vote page styles */
+.vote-header {
+    font-family: var(--primary-font);
+    color: var(--text-color);
+}
+
+.vote-page {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Product styles */
@@ -83,6 +251,8 @@ header {
 
 .product-image {
     aspect-ratio: 4/3;
+    width: 100%;
+    height: 200px;
     border: 2px solid var(--text-color);
     border-radius: 1rem;
     padding: 4px;
@@ -91,13 +261,63 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer styles */
-footer .social-links a {
-    font-family: var(--primary-font) !important;
-    color: var(--background-color) !important;
-    size: 2rem;
+.product-image-detail {
+    aspect-ratio: 4/3;
+    width: 100%;
+    border: 2px solid var(--text-color);
+    border-radius: 1rem;
+    padding: 4px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fa-lg {
-    font-size: 2rem !important;
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .home-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .go-to {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .card .row {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        max-height: none !important;
+        height: auto !important;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .enter-form .card {
+        margin: 1rem;
+    }
+
+    .enter-form .card-body {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-title {
+        font-size: 1.25rem
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
 }
