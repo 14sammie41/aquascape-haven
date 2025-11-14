@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'gallery',
     'marketplace',
     'storages',
-    'tracker',
 ]
 
 MIDDLEWARE = [

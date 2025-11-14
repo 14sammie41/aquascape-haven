@@ -42,6 +42,7 @@ def post_delete(request, pk):
     post = get_object_or_404(Community, pk=pk, user=request.user)
     if request.method == 'POST':
         post.delete()
+        messages.WARNING(request, 'Post deleted.')
         return redirect('account_dashboard')
 
 def post_detail(request, pk):

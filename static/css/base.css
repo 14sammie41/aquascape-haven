@@ -19,6 +19,10 @@
     font-family: var(--primary-font);
 }
 
+.navbar .navbar-toggler-icon {
+    color: lightgray !important;
+}
+
 .navbar .nav-link {
     color: lightgray !important;
     font-family: var(--primary-font);

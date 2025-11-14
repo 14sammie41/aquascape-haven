@@ -21,6 +21,12 @@
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
+    <!-- Favicon from favicon.io -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+
     <title>Aquascape Haven</title>
 
 </head>
@@ -30,8 +36,8 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand nav-link" href="{% url 'home' %}">Aquascape Haven</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span><i class="fas fa-bars"></i></span>
                 </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -101,6 +107,16 @@
                     </div>
             </div>
         </nav>
+        {% if messages %}
+            <div class="container mt-2">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
         {% block content %}
         {% endblock %}
@@ -119,11 +135,11 @@
                         <div class="d-flex flex-column flex-md-row align-items-center go-to">
                             <div class="p-3 flex-shrink-0">
                                 <a href="{% url 'community:community' %}">
-                                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                                    <img class="home-image" src="static/images/scaping-scissors.png" alt="Stainless steel curved scissors">
                                 </a>
                             </div>
                             <div class="card-body text-center text-md-start">
-                                <h3 id="community">Haven Community</h3>
+                                <h3>Haven Community</h3>
                                 <p>Come and join our group of aquascaping people! Here to help, inspire and natter!</p>
                                 <a href="{% url 'community:community' %}" class="btn btn-primary">Let's Talk</a>
                             </div>
@@ -136,11 +152,11 @@
                         <div class="d-flex flex-column flex-md-row align-items-center go-to">
                             <div class="p-3 flex-shrink-0">
                                 <a href="{% url 'competition_home' %}">
-                                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                                    <img class="home-image" src="static/images/aquascape4.png" alt="Bright colourful aquascape">
                                 </a>
                             </div>
                             <div class="card-body text-center text-md-start">
-                                <h3 id="community">Best of the Best</h3>
+                                <h3>Best of the Best</h3>
                                 <p>A little bit of competition is healthy for us all, vote on what you like most or show us what you've got!</p>
                                 <a href="{% url 'competition_home' %}" class="btn btn-primary">Winner!</a>
                             </div>
@@ -152,13 +168,13 @@
                     <div class="card">
                         <div class="d-flex flex-column flex-md-row align-items-center go-to">
                             <div class="card-body text-center text-md-start">
-                                <h3 id="community">The Gallery</h3>
+                                <h3>The Gallery</h3>
                                 <p>See some of the winners and some of the most beautiful aquascapes from our community.</p>
                                 <a href="{% url 'gallery' %}" class="btn btn-primary">Let's See</a>
                             </div>
                             <div class="p-3 flex-shrink-0">
                                 <a href="{% url 'gallery' %}">
-                                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                                    <img class="home-image" src="static/images/aquascape1.png" alt="Perspective driven aquascape">
                                 </a>
                             </div>
                         </div>
@@ -169,13 +185,13 @@
                     <div class="card">
                         <div class="d-flex flex-column flex-md-row align-items-center go-to">
                             <div class="card-body text-center text-md-start">
-                                <h3 id="community">Marketplace</h3>
+                                <h3>Marketplace</h3>
                                 <p>We all love to shop so come and see some of our special deals and get what your fish need!</p>
                                 <a href="{% url 'product_list' %}" class="btn btn-primary">Shopping!</a>
                             </div>
                             <div class="p-3 flex-shrink-0">
                                 <a href="{% url 'product_list' %}">
-                                    <img class="home-image" src="static\images\nano-scape-winner.jpeg" alt="">
+                                    <img class="home-image" src="static/images/tweezers.png" alt="Stainless steel aquascaping tweezers">
                                 </a>
                             </div>
                         </div>
