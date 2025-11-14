@@ -11,6 +11,108 @@ Welcome to your home of all things aquascape, whether you're a beginner or a sea
 + A community hub for clients to post their wins, get advice and just generally chat all things aquascape. (This will utilise Django)
 + Aquascape of the month will be a competion page for clients to pick their favorites with comments, likes and possibly prizes.
 
+### Wireframe
+
+This was a very organic build for me so this wireframe is extremely simple. Apologies:
++ ![Wireframe](static\images\wireframe-mockup.png)
+
+## Database Schema
+
+Below is an overview of the main models and their relationships in Aquascape Haven:
+
+### User (Django default)
+- `id` (PK)
+- `username`
+- `email`
+- `password`
+- ...other Django auth fields
+
+### Gallery
+- `id` (PK)
+- `title`
+- `description`
+- `image` (ImageField)
+- `user` (FK to User)
+- `created_at`
+
+### CommunityPost
+- `id` (PK)
+- `user` (FK to User)
+- `title`
+- `content`
+- `image` (ImageField, optional)
+- `created_at`
+- `updated_at`
+
+### CommunityComment
+- `id` (PK)
+- `post` (FK to CommunityPost)
+- `user` (FK to User)
+- `content`
+- `created_at`
+
+### CompetitionEntry
+- `id` (PK)
+- `user` (FK to User)
+- `title`
+- `description`
+- `image` (ImageField)
+- `created_at`
+- `likes` (ManyToManyField to User)
+- `comments` (related via CompetitionComment)
+
+### CompetitionComment
+- `id` (PK)
+- `entry` (FK to CompetitionEntry)
+- `user` (FK to User)
+- `content`
+- `created_at`
+
+### MarketplaceProduct
+- `id` (PK)
+- `name`
+- `description`
+- `price`
+- `image` (ImageField)
+- `stock`
+- `category`
+- `created_at`
+
+### Order
+- `id` (PK)
+- `user` (FK to User)
+- `order_number`
+- `created_at`
+- `status`
+- `total`
+- ...other order fields
+
+### OrderItem
+- `id` (PK)
+- `order` (FK to Order)
+- `product` (FK to MarketplaceProduct)
+- `quantity`
+- `price`
+
+### Tracker
+- `id` (PK)
+- `user` (FK to User)
+- `tank_name`
+- `fish`
+- `plants`
+- `water_parameters` (JSONField or TextField)
+- `created_at`
+- `updated_at`
+
+---
+
+**Legend:**  
+- PK = Primary Key  
+- FK = Foreign Key  
+- ManyToManyField = Many-to-many relationship
+
+This schema covers users, gallery, community, competition, marketplace, orders, and tank tracking.
+
 ## Tech Stack
 
 - **Backend**: Django, Python
@@ -133,3 +235,33 @@ As I have been testing most aspects as I write the code for the site, I am hopin
         + First issue regarding backslashes fixed by swapping to the right slash.
         + All errors regarding ID were fixed by simply removing them as they were not actually in use.
         + Finally I have a warning regarding a section with no header. This is by design as it creates cleaner code so i have left it.
+    + Initial test for community page showed only the warning from the section with no header, which as above will be left.
+    + Initial test for competition page showed only the warning from the section with no header, which as above will be left.
+    + Initial test for gallery page showed only the warning from the section with no header, which as above will be left.
+    + Initial test for marketplace page showed only the warning from the section with no header, which as above will be left.
++ Second validator used was [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input). Expecting some syntax errors as I haven't dived as deep on my CSS as I did on my HTML.
+    + Two errors found and 21 warnings as described below:
+        + First error was regarding a `size` i had put on my social links which is not a CSS property. Changed it to `font-size` as an actual property.
+        + Second error was because I had used `center` for a position value. This does not work in CSS. Swapped position out for display and margin to have the same affect with the Bootstrap utilities.
+        + I had one warning because an imported file is in the CSS which can safely be ignored.
+        + I had 20 warnings because I am using custom styles with the `--var` tag. Again these can be safely ignored.
++ Checked page using Chrome DevTools. Unsure what to expect, I think I have been pretty thorough with writing my code. I tested in an incognito window so that my personal extensions on Chrome did not affect the test.
+    + Lighthouse shows a performance score of:
+        - 67 for Performance
+            I looked into the reason for this score being lower than expected and found that it is mostly because I am using kits through other websites. I have elected to not worry about these as they allow my site to function smoothly at the moment.
+        - 98 for Accessability
+        - 100 for Best Practices
+        - 91 for SEO
+    + See below for a screenshot of my performance testing:
+    + ![Lighthouse testing](static\images\lighthouse.png)
++ Checked all python code with CI Linter:
+    + No major errors just line spacing and small formatting issues.
++ I have gone through all my models and views to ensure they have docstrings for readability.
+
+## Security
+
++ All secret keys are handled through `.gitignore` initially, then with a `.env` file for local deployment, then finally through config vars in Heroku.
++ Data storage is done through Heroku and Cloudinary using secret keys as described above and PostgreSQL within config vars and `.env` file.
++ I've used Crispy forms to generate unique tokens for each user session. Then each form has to include this token for Django to validate it. If the token is missing due to malicious information, or its invalid/missing, then the message will be automatically rejected thanks to Crispy forms.
++ I've also used `allauth` for user authentication to ensure that casual visitors or people with malicious intent cannot make adjustments or comments on the website.
++ `ALLOWED_HOSTS` is the first layer of security for my site as it tells Django which domain names are allowed to serve this application. In this case I have only used Heroku and localhost to limit malicious activity as much as possible.

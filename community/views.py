@@ -4,12 +4,20 @@ from django.contrib import messages
 from .models import Community
 from .forms import CommunityForm
 
+
 def community_feed(request):
+    """
+    View to show all community posts
+    """
     posts = Community.objects.all().order_by('-created_at')
     return render(request, 'community/community.html', {'posts': posts})
 
+
 @login_required
 def create_post(request):
+    """
+    View to create a new community post
+    """
     if request.method == 'POST':
         form = CommunityForm(request.POST, request.FILES)
         if form.is_valid():
@@ -19,13 +27,18 @@ def create_post(request):
             messages.success(request, 'Post created.')
             return redirect('community:post_detail', pk=post.pk)
         else:
-            return render(request, 'community/create_post.html', {'form': form})
+            return render(request, 'community/create_post.html', {
+                'form': form})
     else:
         form = CommunityForm()
         return render(request, 'community/create_post.html', {'form': form})
-    
+
+
 @login_required
 def post_update(request, pk):
+    """
+    View to update an existing community post
+    """
     post = get_object_or_404(Community, pk=pk, user=request.user)
     if request.method == 'POST':
         form = CommunityForm(request.POST, request.FILES, instance=post)
@@ -35,16 +48,25 @@ def post_update(request, pk):
             return redirect('community:post_detail', pk=post.pk)
     else:
         form = CommunityForm(instance=post)
-    return render(request, 'community/create_post.html', {'form': form, 'post': post})
+    return render(request, 'community/create_post.html', {
+            'form': form, 'post': post})
+
 
 @login_required
 def post_delete(request, pk):
+    """
+    View to delete a community post
+    """
     post = get_object_or_404(Community, pk=pk, user=request.user)
     if request.method == 'POST':
         post.delete()
         messages.WARNING(request, 'Post deleted.')
         return redirect('account_dashboard')
 
+
 def post_detail(request, pk):
+    """
+    View to show a single community post
+    """
     post = get_object_or_404(Community, pk=pk)
     return render(request, 'community/post_detail.html', {'post': post})

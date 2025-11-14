@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Community(models.Model):
+    """
+    Model representing a community post.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=True, blank=True)
     content = models.TextField(max_length=500)

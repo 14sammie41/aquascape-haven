@@ -4,6 +4,9 @@ from django.conf import settings
 from marketplace.models import Product
 
 class Order(models.Model):
+    """
+    Order model to store order details
+    """
     order_number = models.CharField(max_length=32, unique=True, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -33,6 +36,9 @@ class Order(models.Model):
         return self.order_number
     
 class OrderLineItem(models.Model):
+    """
+    OrderLineItem model to store individual items in an order
+    """
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
@@ -44,4 +50,7 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
         
     def __str__(self):
+        """
+        String representation of the OrderLineItem
+        """
         return f'{self.product.name} on order {self.order.order_number}'

@@ -82,7 +82,7 @@ footer {
 
 .social-links a {
     font-family: var(--primary-font) !important;
-    size: 2rem;
+    font-size: 2rem;
     text-decoration: none;
     border: none;
 }
@@ -133,7 +133,8 @@ footer {
 }
 
 .card-img-top {
-    position: center;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Community post styles */

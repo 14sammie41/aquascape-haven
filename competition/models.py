@@ -1,6 +1,9 @@
 from django.db import models
 
 class Entry(models.Model):
+    """
+    Model representing a competition entry.
+    """
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='competition_entries/')
     description = models.TextField()

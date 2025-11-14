@@ -3,6 +3,7 @@ from django.shortcuts import render
 from checkout.models import Order
 from community.models import Community
 
+
 @login_required
 def account_dashboard(request):
     """
