@@ -14,7 +14,7 @@ Welcome to your home of all things aquascape, whether you're a beginner or a sea
 ### Wireframe
 
 This was a very organic build for me so this wireframe is extremely simple. Apologies:
-+ ![Wireframe](static\images\wireframe-mockup.png)
++ ![Wireframe](static/images/wireframe-mockup.png)
 
 ## Database Schema
 
