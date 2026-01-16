@@ -204,9 +204,9 @@ Ensure you have the follwing pre requisites to start:
 11. Link your GitHub in the Heroku Deploy tab.
 12. In the Heroku deploy tab, click the Deploy button and wait for it to run.
 13. Open App.
-+ ![Screenshot of config vars on Heroku](static\images\config-vars.png)
++ ![Screenshot of config vars on Heroku](static/images/config-vars.png)
 + ![Screenshot of live homepage]()
-+ ![Screenshot of .env.example file](static\images\envfileexample.png)
++ ![Screenshot of .env.example file](static/images/envfileexample.png)
 
 ### Troubleshooting Heroku deployment:
 
@@ -221,8 +221,8 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### Automated testing:
 
-+ The first Django app I created was `gallery`, this is the simplest of all of my apps. The test I ran was simply to check both the model and the view to ensure the information being inputted was being read and fed back correctly. All of the tests for this came back perfectly. They can be found at: ![gallery] (gallery\tests.py)
-+ The next app I tested was my `community` app which needed to be tested for both user authentication and posting requirements. I created three failing tests in my `community/tests/test_view.py` to test all of the above. The first issue i encountered was that i had linked the whole app up incorrectly. The initial correction to solve this was to back track a little and see if i could get the app working generally on the local server. Then the rest of the tests can be found at: ![Community](community\tests\test_view.py)
++ The first Django app I created was `gallery`, this is the simplest of all of my apps. The test I ran was simply to check both the model and the view to ensure the information being inputted was being read and fed back correctly. All of the tests for this came back perfectly. They can be found at: ![gallery] (gallery/tests.py)
++ The next app I tested was my `community` app which needed to be tested for both user authentication and posting requirements. I created three failing tests in my `community/tests/test_view.py` to test all of the above. The first issue i encountered was that i had linked the whole app up incorrectly. The initial correction to solve this was to back track a little and see if i could get the app working generally on the local server. Then the rest of the tests can be found at: ![Community](community/tests/test_view.py)
 
 ### Testing as a user for navigation purposes:
 + All pages have been checked, all links have been confirmed to work including external links to ensure they open in a new page.
@@ -253,7 +253,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
         - 100 for Best Practices
         - 91 for SEO
     + See below for a screenshot of my performance testing:
-    + ![Lighthouse testing](static\images\lighthouse.png)
+    + ![Lighthouse testing](static/images/lighthouse.png)
 + Checked all python code with CI Linter:
     + No major errors just line spacing and small formatting issues.
 + I have gone through all my models and views to ensure they have docstrings for readability.
@@ -276,4 +276,4 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### Broken links
 
-+ The first links noticed by the examiners were the one in this README file.
++ The first links noticed by the examiners were the one in this README file. When I looked into the formatting for the image paths in this file i found that when i had right clicked to 'copy relative path' it had automatically put back slashes into the file path rather than forward slashes meaning the .md file couldn't properly read the path.
