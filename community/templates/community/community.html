@@ -20,6 +20,10 @@
                         <h5 class="card-title">{{ post.title }}</h5>
                         <p class="card-text">{{ post.content }}</p>
                     </div>
+                    {% if user.is_authenticated and user == post.user %}
+                        <a href="{% url '' post.id %}">Edit</a>
+                        <a href="{% url '' post.id %}">Delete</a>
+                    {% endif %}
                     <div class="card-footer text-muted small">
                         Posted by {{ post.user.username }} on {{ post.created_at }}
                     </div>

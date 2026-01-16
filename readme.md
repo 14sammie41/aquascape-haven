@@ -20,6 +20,8 @@ This was a very organic build for me so this wireframe is extremely simple. Apol
 
 Below is an overview of the main models and their relationships in Aquascape Haven:
 
+![Schema](static\images\aquascape-schema.png)
+
 ### User (Django default)
 - `id` (PK)
 - `username`
@@ -47,23 +49,6 @@ Below is an overview of the main models and their relationships in Aquascape Hav
 ### CommunityComment
 - `id` (PK)
 - `post` (FK to CommunityPost)
-- `user` (FK to User)
-- `content`
-- `created_at`
-
-### CompetitionEntry
-- `id` (PK)
-- `user` (FK to User)
-- `title`
-- `description`
-- `image` (ImageField)
-- `created_at`
-- `likes` (ManyToManyField to User)
-- `comments` (related via CompetitionComment)
-
-### CompetitionComment
-- `id` (PK)
-- `entry` (FK to CompetitionEntry)
 - `user` (FK to User)
 - `content`
 - `created_at`
@@ -111,7 +96,7 @@ Below is an overview of the main models and their relationships in Aquascape Hav
 - FK = Foreign Key  
 - ManyToManyField = Many-to-many relationship
 
-This schema covers users, gallery, community, competition, marketplace, orders, and tank tracking.
+This schema covers users, gallery, community, marketplace, orders, and tank tracking.
 
 ## Tech Stack
 
@@ -181,7 +166,7 @@ Deployment, step-by-step guide:
 ### For Heroku and live deployment:
 
 Ensure you have the follwing pre requisites to start:
-+ Heroku CLI installed, follow the link > ![Heroku](https://devcenter.heroku.com/articles/heroku-cli)
++ Heroku CLI installed, follow the link > [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
 + A Git repository for the Django project.
 + A Heroku account (This can be created from the above link)
 1. Create required files as below:
@@ -276,4 +261,13 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### Broken links
 
-+ The first links noticed by the examiners were the one in this README file. When I looked into the formatting for the image paths in this file i found that when i had right clicked to 'copy relative path' it had automatically put back slashes into the file path rather than forward slashes meaning the .md file couldn't properly read the path.
++ The first links noticed by the examiners were the one in this README file. When I looked into the formatting for the image paths in this file i found that when i had right clicked to 'copy relative path' it had automatically put back slashes into the file path rather than forward slashes meaning the .md file couldn't properly read the path. Once I had found the source of that initial issue, it was easy to go through and correct the remaining paths within the README file.
++ 
+
+### Schema
+
++ I needed to add a visual for my Schema so I asked CoPilot to create an image based on my text based schema to show the flow of the keys on the site.
+
+### CRUD
+
++ The 'Update' and 'Delete' aspects of my community posts were not working and were lacking on the posts themselves for logged in users. The first fix for this was to add the buttons for logged in users on their own posts. 
