@@ -265,3 +265,15 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 + I've used Crispy forms to generate unique tokens for each user session. Then each form has to include this token for Django to validate it. If the token is missing due to malicious information, or its invalid/missing, then the message will be automatically rejected thanks to Crispy forms.
 + I've also used `allauth` for user authentication to ensure that casual visitors or people with malicious intent cannot make adjustments or comments on the website.
 + `ALLOWED_HOSTS` is the first layer of security for my site as it tells Django which domain names are allowed to serve this application. In this case I have only used Heroku and localhost to limit malicious activity as much as possible.
+
+## Re submission follow ups:
+
++ As a result of some broken links I have been requested to do a resubmission, please see all following notes for what was done in this period.
+
+### Competition page
+
++ It is always important to admit when you have gone a little too far. When initially I created the idea for this page i thought it would be nice to have a page where people could post their tanks and compete at different levels for prizes. Unfortunately I never really got it to work properly, but also it was an unneccesary addition to a page that already had multiple levels and different app types. As a result of this and with some advice from my tutor I made the decision to remove the entire app and all associated links. The only issue this really caused was a lack of symmetry on the home page. If I was to go back to the page and go at it again I would definitely look to integrate a competition page but possibly matching it with the social section to merge it better.
+
+### Broken links
+
++ The first links noticed by the examiners were the one in this README file.

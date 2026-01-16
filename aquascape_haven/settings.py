@@ -29,7 +29,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'aquascape-haven.herokuapp.com', # Heroku app domain
@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'basket',
     'checkout',
     'community',
-    'competition',
     'gallery',
     'marketplace',
     'storages',

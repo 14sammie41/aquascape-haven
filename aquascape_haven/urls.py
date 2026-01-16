@@ -12,7 +12,6 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='base.html'), name='home'),
     path('basket/', include(('basket.urls', 'basket'), namespace='basket')),
     path('checkout/', include(('checkout.urls', 'checkout'), namespace='checkout')),
-    path('home/', include('competition.urls')),
     path('community/', include(('community.urls', 'community'), namespace='community')),
     path('gallery/', include('gallery.urls')),
     path('marketplace/', include('marketplace.urls')),
