@@ -162,7 +162,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media file handling
 
-MEDIA_URL = '/media/'
+MEDIA_URL = f"https://aquascape-haven.s3.amazonaws.com/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Django Allauth configuration
@@ -201,6 +201,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # AWS S3 settings for production media files
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_S3_CUSTOM_DOMAIN = f"aquascape-haven.s3.amazonaws.com"
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
