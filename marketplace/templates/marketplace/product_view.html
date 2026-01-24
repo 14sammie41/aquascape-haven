@@ -11,6 +11,7 @@
             <p class="lead">{{ product.description }}</p>
             <h4 class="mb-4">Price: £{{ product.display_price|floatformat:2 }}</h4>
             <a href="{% url 'basket:add_to_basket' product.id %}" class="btn btn-success btn-lg">Buy now</a>
+            <a href="{% url 'marketplace:product_list' %}" class="btn btn-outline-primary">Return to Marketplace</a>
         </div>
     </div>
 </div>

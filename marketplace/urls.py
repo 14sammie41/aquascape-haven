@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 
+app_name = 'marketplace'
+
 urlpatterns = [
     path('', views.product_list, name='product_list'),
     path('create-checkout-session/<int:product_id>/', views.create_checkout_session, name='create_checkout_session'),

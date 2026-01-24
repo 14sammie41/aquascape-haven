@@ -20,7 +20,7 @@
                         <p class="card-text">{{ product.description|truncatechars:25 }}</p>
                         <p><strong>£{{ product.display_price|floatformat:2 }}</strong></p>
                         <div class="d-flex justify-content-between">
-                            <a href="{% url 'product_view' product.id %}" class="btn btn-outline-primary">View</a>
+                            <a href="{% url 'marketplace:product_view' product.id %}" class="btn btn-outline-primary">View</a>
                             <a href="{% url 'basket:add_to_basket' product.id %}" class="btn btn-success">Buy now</a>
                         </div>
                     </div>
