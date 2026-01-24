@@ -58,11 +58,9 @@ def post_delete(request, pk):
     View to delete a community post
     """
     post = get_object_or_404(Community, pk=pk, user=request.user)
-    if request.method == 'POST':
-        post.delete()
-        messages.WARNING(request, 'Post deleted.')
-        return redirect('account_dashboard')
-
+    post.delete()
+    messages.warning(request, 'Post deleted.')
+    return redirect('community')
 
 def post_detail(request, pk):
     """

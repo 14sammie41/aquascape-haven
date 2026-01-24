@@ -15,6 +15,10 @@
                 Posted by {{ post.user.username }} on {{ post.created_at|date:"F j, Y, g:i a" }}
             </small>
             <div class="mt-4">
+                {% if user.is_authenticated and user == post.user %}
+                    <a href="{% url 'community:post_update' post.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'community:post_delete' post.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
                 <a href="{% url 'community:community' %}" class="btn btn-outline-primary">Back to Community</a>
             </div>
         </div>
