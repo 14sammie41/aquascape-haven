@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', account_dashboard, name='account_dashboard'),
+    path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name='base.html'), name='home'),
     path('basket/', include(('basket.urls', 'basket'), namespace='basket')),

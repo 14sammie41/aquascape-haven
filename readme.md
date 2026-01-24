@@ -274,4 +274,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
     + ![Testing buttons](static\images\testing-community.png)
 + Getting a screenshot of the edit and delete functions in action is more challenging than I thought it would be. I have added a screenshot of the messages that come up when in action though:
     + ![Testing functions](static\images\testing-crud.png)
++ Issue with loading images correctly through AWS cloud storage was due to me having not added the right policy in when setting it up originally. Once I added the policy into AWS S3 it was happy to load and show the images perfectly.
++ Navigation issues for the marketplace section. I had realised that when looking at the detail view for products there was only a button for customers to be able to buy the product, but not a button for them to return to the marketplace to carry on shopping. Added that button meaning better UI navigation for the clients. I also mirrored this idea at the basket point for customers to be able to 'Continue shopping' after adding something to their basket without having to go back to the navbar.
++ To bolster the navigation issues found in previous testing I have manually worked through the payment process and ensured I can go through the whole process from start to finish.
 + 
