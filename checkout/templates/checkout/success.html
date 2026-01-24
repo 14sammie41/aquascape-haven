@@ -30,6 +30,6 @@
     <p>{{ order.town_or_city }}, {{ order.county }}, {{ order.postcode }}</p>
     <p>{{ order.country }}</p>
     <br>
-    <a href="{% url 'product_list' %}">Continue Shopping</a>
+    <a href="{% url 'marketplace:product_list' %}" class="btn btn-primary">Continue Shopping</a>
   </div>
 {% endblock %}
