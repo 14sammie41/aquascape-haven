@@ -60,7 +60,7 @@ def post_delete(request, pk):
     post = get_object_or_404(Community, pk=pk, user=request.user)
     post.delete()
     messages.warning(request, 'Post deleted.')
-    return redirect('community')
+    return redirect('community:community')
 
 def post_detail(request, pk):
     """

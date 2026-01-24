@@ -270,4 +270,8 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### CRUD
 
-+ The 'Update' and 'Delete' aspects of my community posts were not working and were lacking on the posts themselves for logged in users. The first fix for this was to add the buttons for logged in users on their own posts. 
++ The 'Update' and 'Delete' aspects of my community posts were not working and were lacking on the posts themselves for logged in users. The first fix for this was to add the buttons for logged in users on their own posts. I also made sure to use Bootstrap styling to clean the look generally. See below for screenshots of those edits in action:
+    + ![Testing buttons](static\images\testing-community.png)
++ Getting a screenshot of the edit and delete functions in action is more challenging than I thought it would be. I have added a screenshot of the messages that come up when in action though:
+    + ![Testing functions](static\images\testing-crud.png)
++ 
