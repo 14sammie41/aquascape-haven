@@ -32,7 +32,7 @@
                 </div>
                 <div class="btn-group">
                     <a href="{% url 'community:post_detail' post.id %}" class="btn btn-sm btn-outline-primary">View</a>
-                    <a href="{% url 'community:create_post' post.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a href="{% url 'community:post_edit' post.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
                     <!-- Delete Button triggers Modal -->
                     <a href="#" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.id }}">
                         Delete
