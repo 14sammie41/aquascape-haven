@@ -305,3 +305,6 @@ The following smoke test was carried out on the live deployed site to confirm th
 | Checkout | Successful Payment | Complete checkout with Stripe test card | Redirect to success page; order recorded | | |
 | Validators | HTML/CSS Validation | Run W3C validators on key pages | No critical errors | | |
 | Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | | |
+
+
+### Fixing AWS
