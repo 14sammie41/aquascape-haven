@@ -32,6 +32,43 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+USE_AWS = os.getenv("USE_AWS") == "True"
+
+# AWS S3 settings for production media files 
+if USE_AWS:
+    print("AWS MODE ACTIVE")
+    print("USE_AWS =", os.getenv("USE_AWS"))
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    
+    # Static files on S3
+    STATICFILES_STORAGE = "aquascape_haven.custom_storages.StaticStorage"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+    
+    # Media files on S3
+    DEFAULT_FILE_STORAGE = "aquascape_haven.custom_storages.MediaStorage"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+    
+    # Required so Django doesn't error
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+    
+    print("STATICFILES_STORAGE =", STATICFILES_STORAGE)
+    print("DEFAULT_FILE_STORAGE =", DEFAULT_FILE_STORAGE)
+else:
+    # Static file (local development)
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/5.2/howto/static-files/
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+    # Media files (local development)
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
 
 ALLOWED_HOSTS = [
     'aquascape-haven.herokuapp.com', # Heroku app domain
@@ -184,36 +221,5 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Email backend configuration
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Static file (local development)
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Media files (local development)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-# AWS S3 settings for production media files
-
-if os.getenv("USE_AWS") == "True":
-    print("AWS MODE ACTIVE")
-    print("USE_AWS =", os.getenv("USE_AWS"))
-    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
-    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-    
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    
-    # Static files on S3
-    STATICFILES_STORAGE = "aquascape_haven.custom_storages.StaticStorage"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-    
-    # Media files on S3
-    DEFAULT_FILE_STORAGE = "aquascape_haven.custom_storages.MediaStorage"
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
-    
-    print("STATICFILES_STORAGE =", STATICFILES_STORAGE)
-    print("DEFAULT_FILE_STORAGE =", DEFAULT_FILE_STORAGE)
+print("DEBUG =", DEBUG)
+print("USE_AWS =", USE_AWS)
