@@ -62,6 +62,7 @@ if USE_AWS:
     }
     AWS_DEFAULT_ACL = None  # Disable ACLs
     STATIC_ROOT = BASE_DIR / 'staticfiles'
+    STATICFILES_DIRS = [BASE_DIR / 'static']
 else:
     # Static file (local development)
     # Static files (CSS, JavaScript, Images)
