@@ -292,17 +292,17 @@ The following smoke test was carried out on the live deployed site to confirm th
 | Navigation | Home (`/`) | Click "Home" in navbar | Home page loads with no errors | Home page loaded with no errors | Pass |
 | Navigation | Marketplace (`/marketplace/`) | Click "Marketplace" in navbar | Marketplace page loads and products display | Marketplace page loaded with no errors and products are displayed as expected | Pass |
 | Navigation | Basket (`/basket/`) | Click "Basket" in navbar | Basket page loads; empty basket message if no items | Basket page loads correctly and in the test there was no items in basket and the page reflects this correctly | Pass |
-| Navigation | Community (`/community/`) | Click "Community" in navbar | Community list loads with posts visible | It does load with all posts available however images are not loading as this is not my  | |
-| Navigation | Gallery (`/gallery/`) | Click "Gallery" in navbar | Gallery page loads with no errors | | |
-| Authentication | Login (`/accounts/login/`) | Visit while logged out | Login page loads normally | | |
-| Authentication | Login (logged in) | Visit `/accounts/login/` while logged in | Redirects to home with message | | |
-| Authentication | Signup (`/accounts/signup/`) | Visit while logged out | Signup page loads normally | | |
-| Authentication | Signup (logged in) | Visit `/accounts/signup/` while logged in | Redirects to home with message | | |
-| CRUD | Community Create | Create a new post | Post appears in list and detail view | | |
-| CRUD | Community Edit | Edit an existing post | Changes appear immediately in UI | | |
-| CRUD | Community Delete | Delete a post | Post is removed from list | | |
-| Basket | Add to Basket | Add item from Marketplace | Basket count updates; item appears in basket | | |
-| Checkout | Successful Payment | Complete checkout with Stripe test card | Redirect to success page; order recorded | | |
+| Navigation | Community (`/community/`) | Click "Community" in navbar | Community list loads with posts visible | It does load with all posts available however images are not loading. Looking into this further I found many issues, please see *Fixing AWS* for an explanation of the work done to resolve this | Pass (eventually) |
+| Navigation | Gallery (`/gallery/`) | Click "Gallery" in navbar | Gallery page loads with no errors | Gallery loads with all images and styles correct | Pass |
+| Authentication | Login (`/accounts/login/`) | Visit while logged out | Login page loads normally | Login page loads correctly with no issues | Pass |
+| Authentication | Login (logged in) | Visit `/accounts/login/` while logged in | Redirects to home with message | Correctly redirects to Homepage with a message saying already logged in | Pass |
+| Authentication | Signup (`/accounts/signup/`) | Visit while logged out | Signup page loads normally | Sign up page loads perfectly with no issues | Pass |
+| Authentication | Signup (logged in) | Visit `/accounts/signup/` while logged in | Redirects to home with message | Correctly redirects to Homepage with a message saying already logged in | Pass |
+| CRUD | Community Create | Create a new post | Post appears in list and detail view | New post created and confirmed to be formatting correctly | Pass |
+| CRUD | Community Edit | Edit an existing post | Changes appear immediately in UI | All changes done through edit are working perfectly | Pass |
+| CRUD | Community Delete | Delete a post | Post is removed from list | Post deleted as requested with a message informing as such | Pass |
+| Basket | Add to Basket | Add item from Marketplace | Basket count updates; item appears in basket | Item appears in basket, and when quantity is updated it also updated in basket count in navbar | Pass |
+| Checkout | Successful Payment | Complete checkout with Stripe test card | Redirect to success page; order recorded | Redirected to success page and order recorded on account | Pass |
 | Validators | HTML/CSS Validation | Run W3C validators on key pages | No critical errors | | |
 | Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | | |
 
