@@ -42,22 +42,26 @@ if USE_AWS:
     AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-    
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    
+    # Django 5 storage backends
+    STORAGES = {
+        "default": {
+            "BACKEND": "aquascape_haven.custom_storages.MediaStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "aquascape_haven.custom_storages.StaticStorage",
+        }
+    }
     # Static files on S3
-    STATICFILES_STORAGE = "aquascape_haven.custom_storages.StaticStorage"
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-    
     # Media files on S3
-    DEFAULT_FILE_STORAGE = "aquascape_haven.custom_storages.MediaStorage"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
-    
     # Required so Django doesn't error
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+    AWS_DEFAULT_ACL = None  # Disable ACLs
     STATIC_ROOT = BASE_DIR / 'staticfiles'
-    
-    print("STATICFILES_STORAGE =", STATICFILES_STORAGE)
-    print("DEFAULT_FILE_STORAGE =", DEFAULT_FILE_STORAGE)
 else:
     # Static file (local development)
     # Static files (CSS, JavaScript, Images)
@@ -65,10 +69,10 @@ else:
     STATIC_URL = '/static/'
     STATICFILES_DIRS = [BASE_DIR / 'static']
     STATIC_ROOT = BASE_DIR / 'staticfiles'
-
     # Media files (local development)
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
+print("STATICFILES_DIRS =", globals().get("STATICFILES_DIRS"))
 
 ALLOWED_HOSTS = [
     'aquascape-haven.herokuapp.com', # Heroku app domain
@@ -223,3 +227,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 print("DEBUG =", DEBUG)
 print("USE_AWS =", USE_AWS)
+
+from django.contrib.staticfiles.storage import staticfiles_storage
+print("STATICFILES_STORAGE CLASS =", staticfiles_storage.__class__)

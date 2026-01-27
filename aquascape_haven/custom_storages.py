@@ -1,6 +1,6 @@
-from storages.backends.s3boto3 import S3ManifestStaticStorage, S3Boto3Storage
+from storages.backends.s3boto3 import S3Boto3Storage
 
-class StaticStorage(S3ManifestStaticStorage):
+class StaticStorage(S3Boto3Storage):
     location = "static"
     default_acl = None # ACLs disabled
 
