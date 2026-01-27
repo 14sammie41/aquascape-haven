@@ -277,4 +277,31 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 + Issue with loading images correctly through AWS cloud storage was due to me having not added the right policy in when setting it up originally. Once I added the policy into AWS S3 it was happy to load and show the images perfectly.
 + Navigation issues for the marketplace section. I had realised that when looking at the detail view for products there was only a button for customers to be able to buy the product, but not a button for them to return to the marketplace to carry on shopping. Added that button meaning better UI navigation for the clients. I also mirrored this idea at the basket point for customers to be able to 'Continue shopping' after adding something to their basket without having to go back to the navbar.
 + To bolster the navigation issues found in previous testing I have manually worked through the payment process and ensured I can go through the whole process from start to finish.
-+ 
+
+### Authentication
+
++ I had an issue with authenticated users being able to navigate to the log in page when already logged in. This was easily fixed using an accounts app and a full redirect to home page with a message to explain that this is what was happening. You can see screenshots of it in action below:
+    + ![Authentication testing](static\images\authentication-testing.png)
+
+### Navigation Smoke Test:
+
+The following smoke test was carried out on the live deployed site to confirm that all primary navigation links and core user journeys function without server errors.
+
+| Area Tested | Page / Route | Test Steps | Expected Behaviour | Actual Behaviour | Status |
+|-------------|--------------|------------|--------------------|------------------|--------|
+| Navigation | Home (`/`) | Click "Home" in navbar | Home page loads with no errors | Home page loaded with no errors | Pass |
+| Navigation | Marketplace (`/marketplace/`) | Click "Marketplace" in navbar | Marketplace page loads and products display | Marketplace page loaded with no errors and products are displayed as expected | Pass |
+| Navigation | Basket (`/basket/`) | Click "Basket" in navbar | Basket page loads; empty basket message if no items | Basket page loads correctly and in the test there was no items in basket and the page reflects this correctly | Pass |
+| Navigation | Community (`/community/`) | Click "Community" in navbar | Community list loads with posts visible | It does load with all posts available however images are not loading as this is not my  | |
+| Navigation | Gallery (`/gallery/`) | Click "Gallery" in navbar | Gallery page loads with no errors | | |
+| Authentication | Login (`/accounts/login/`) | Visit while logged out | Login page loads normally | | |
+| Authentication | Login (logged in) | Visit `/accounts/login/` while logged in | Redirects to home with message | | |
+| Authentication | Signup (`/accounts/signup/`) | Visit while logged out | Signup page loads normally | | |
+| Authentication | Signup (logged in) | Visit `/accounts/signup/` while logged in | Redirects to home with message | | |
+| CRUD | Community Create | Create a new post | Post appears in list and detail view | | |
+| CRUD | Community Edit | Edit an existing post | Changes appear immediately in UI | | |
+| CRUD | Community Delete | Delete a post | Post is removed from list | | |
+| Basket | Add to Basket | Add item from Marketplace | Basket count updates; item appears in basket | | |
+| Checkout | Successful Payment | Complete checkout with Stripe test card | Redirect to success page; order recorded | | |
+| Validators | HTML/CSS Validation | Run W3C validators on key pages | No critical errors | | |
+| Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | | |
