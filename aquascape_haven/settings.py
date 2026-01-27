@@ -20,7 +20,7 @@ import sys
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 from dotenv import load_dotenv # type: ignore
-load_dotenv(BASE_DIR / '.env')
+load_dotenv(Path(__file__).resolve().parent / '.env')
 
 print("DEBUGGING: USE_AWS =", os.getenv("USE_AWS"))
 
