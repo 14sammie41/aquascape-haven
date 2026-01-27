@@ -307,4 +307,99 @@ The following smoke test was carried out on the live deployed site to confirm th
 | Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | | |
 
 
-### Fixing AWS
+## Fixing AWS
+
+### **Summary of AWS S3 + Heroku Static & Media Configuration**
+
+This project was updated to use Amazon S3 for hosting both static and media files in production. The following steps were completed to ensure Django, Heroku, and S3 work together correctly.
+
+## **1. Enabled S3 for Static and Media Files**
+
+Added an AWS configuration block in `settings.py` that activates when `USE_AWS=True` (set in Heroku Config Vars). This block:
+
+- Defines the S3 bucket and region  
+- Sets up Django 5’s `STORAGES` dictionary for static files  
+- Configures `DEFAULT_FILE_STORAGE` for media files  
+- Sets correct `STATIC_URL` and `MEDIA_URL` pointing to S3  
+- Ensures caching and ACL settings are compatible with S3  
+- Includes `STATICFILES_DIRS` so Django can find project‑level static files in production  
+
+This ensures:
+
+- **Static files** → uploaded to `static/` in S3  
+- **Media files** → uploaded to `media/` in S3  
+- Heroku no longer attempts to serve static/media locally  
+
+## **2. Created Custom Storage Backends**
+
+Added `custom_storages.py` with two classes:
+
+- `StaticStorage` → handles static files  
+- `MediaStorage` → handles media uploads  
+
+Both classes disable ACLs and set correct S3 locations.
+
+This allows Django to route static and media files to the correct S3 folders.
+
+## **3. Fixed Static File Discovery in Production**
+
+Heroku was not collecting static files because Django could not see the project’s `/static/` directory.
+
+Solution:
+
+```python
+STATICFILES_DIRS = [BASE_DIR / "static"]
+```
+
+This was added to **both** the AWS and local development blocks.
+
+Result:  
+CSS, JS, and static images now upload correctly to S3 during Heroku builds.
+
+## **4. Corrected Template Static Paths**
+
+Some templates referenced static images using hard‑coded paths like:
+
+/static/images/filename.png
+
+These were updated to use Django’s static tag:
+
+```django
+{% static 'images/filename.png' %}
+```
+
+This ensures Django rewrites URLs to the S3 domain in production.
+
+## **5. Fixed Media File Handling**
+
+Gallery images and admin thumbnails were failing because:
+
+- They were uploaded before S3 was enabled  
+- They existed only in the old local `/media/` folder  
+- Heroku cannot serve local media  
+
+After enabling `DEFAULT_FILE_STORAGE` and `MEDIA_URL`, new uploads correctly save to S3.
+
+Older images were re‑uploaded so they exist in the S3 `media/` folder.
+
+## **6. Verified Heroku Build Behaviour**
+
+During deployment:
+
+- Heroku runs `collectstatic`  
+- Static files are uploaded to S3  
+- Media files are handled by the MediaStorage backend  
+- The admin panel now loads correctly  
+- Gallery images display as expected  
+
+# **Outcome**
+
+The project now uses a fully functional, production‑ready S3 setup:
+
+- Static files load from `https://<bucket>.s3.amazonaws.com/static/...`  
+- Media files load from `https://<bucket>.s3.amazonaws.com/media/...`  
+- Heroku no longer serves static/media locally  
+- Admin and gallery pages work correctly  
+- All templates reference static assets properly  
+
+This completes the migration from local file handling to cloud‑based storage.
