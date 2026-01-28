@@ -405,3 +405,150 @@ This completes the migration from local file handling to cloud‑based storage.
 
 ## Stripe Webhook Endpoint Testing
 
+### Webhook Configuration
+
+The project uses a Stripe webhook to verify and process successful payments.  
+The webhook endpoint is:
+
+```
+/checkout/wh/
+```
+
+This endpoint is defined in `checkout/urls.py` and handled by the `stripe_webhook` view.
+
+The webhook signing secret is stored securely in environment variables:
+
+- **Local:** `.env` → `STRIPE_WEBHOOK_SECRET`
+- **Production:** Heroku Config Vars → `STRIPE_WEBHOOK_SECRET`
+
+### 🧪 Webhook Test Procedure  
+To verify that the webhook was correctly configured and functioning in production, the following steps were performed:
+
+**1. Trigger a Test Payment (Stripe Test Mode)**
+A test order was placed using Stripe’s test card:
+
+- Card number: `4242 4242 4242 4242`  
+- Any future expiry date  
+- Any CVC  
+
+This creates a real `payment_intent.succeeded` event in Stripe Test Mode.
+
+**2. Stripe Automatically Sends the Webhook Event**
+After the test payment completes, Stripe sends a POST request to:
+
+```
+https://<heroku-app>/checkout/wh/
+```
+
+**3. View Logs in Heroku Dashboard**
+Since the Heroku CLI was not available on this machine, logs were viewed via:
+
+*Heroku Dashboard → More → View Logs*
+
+The logs showed Stripe successfully reaching the webhook endpoint and the Django view returning a `200 OK` response.
+
+### Evidence of Working Webhook  
+Below is the exact log output confirming the webhook was received and processed successfully:
+
+```
+POST /checkout/wh/ HTTP/1.1" 200
+"Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+```
+
+This demonstrates:
+
+- The webhook URL is correct  
+- Stripe reached the endpoint  
+- The signature was verified  
+- The event was processed without errors  
+- Django returned a valid `200` response  
+
+### Notes  
+- A 404 was initially returned due to a mismatch between the environment variable name and the value referenced in `settings.py`.  
+- After correcting the variable (`STRIPE_WEBHOOK_SECRET`) and redeploying, the webhook processed successfully.  
+- The webhook view includes error handling for invalid payloads and missing signatures.
+
+### Screenshots relevant to the above testing:
+
++ ![Stripe Endpoint sandbox](static\images\stripe-endpoint.png)
++ ![Stripe event locations](static\images\stripe-events.png)
++ ![Successful stripe events](static\images\stripe-success.png)
++ ![Successful Stripe log in Heroku](static\images\stripe-success-log.png)
+
+## **Manual Test Matrix (With Verified Pass/Fail)**
+
+### **Basket & Checkout Flow**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| Add to Basket | User adds a product to the basket | Basket updates and item appears | Pass |
+| Update Basket Quantity | User adjusts quantity | Totals update correctly | Pass |
+| Remove Item | User removes an item | Item removed and totals update | Pass |
+| Empty Basket Checkout | User tries to checkout with empty basket | User prevented from checking out | Pass |
+| Checkout Page Loads | User proceeds to checkout | Checkout form loads with correct totals | Pass |
+| Stripe Payment Success | User enters valid test card | Payment succeeds, redirected to success page | Pass |
+| Stripe Payment Failure | User enters failing test card | Error message shown | Pass |
+| Webhook Processing | Stripe sends `payment_intent.succeeded` | Webhook returns 200 and logs success | Pass |
+
+*Screenshots for the above, not covered previously*
++ ![Stripe failure](static\images\stripe-failure.png)
+
+### **User Accounts & Authentication**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| Register Account | User signs up | Account created and logged in | Pass |
+| Login | User logs in | Successful authentication | Pass |
+| Logout | User logs out | Session ends, redirect occurs | Pass |
+| Invalid Login | Wrong password | Error message shown | Pass |
+| Authenticated Redirect | Logged‑in user visits login/signup | Redirected to dashboard | Pass |
+
+### **Order Management**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| Order Creation | Successful payment creates order | Order appears in admin | Pass |
+| Order Detail Page | User views order detail | Correct order info displayed | Pass |
+| Order Number in Success URL | Success page shows correct order number | Matches Stripe intent metadata | Pass |
+
+### **Gallery & Community Features**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| View Gallery | User visits gallery | Images load correctly | Pass |
+| Community Create | Authenticated user creates post | Post appears in list | Pass |
+| Community Edit | User edits their post | Changes saved | Pass |
+| Community Delete | User deletes their post | Post removed | Pass |
+| Permission Check | User tries to edit/delete others’ posts | Action blocked | Pass |
+
+### **Navigation & UX**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| Navbar Links | All navbar links tested | All links route correctly | Pass |
+| Footer Links | Footer links tested | All links route correctly | Pass |
+| Mobile Navigation | Navbar collapses on mobile | Menu opens/closes correctly | Pass |
+
+### **Responsive Design**
+
+| Device Size | Test Description | Expected Result | Pass/Fail |
+|--------------|------------------|-----------------|-----------|
+| Mobile | Test pages on mobile viewport | Layout adapts, no overflow | Pass |
+| Tablet | Test pages on tablet viewport | Layout adapts correctly | Pass |
+| Desktop | Test pages on desktop viewport | Full layout displays correctly | Pass |
+
+### **Security & Validation**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| Form Validation | Required fields blank | Error messages shown | Pass |
+| CSRF Protection | Forms include CSRF tokens | Tokens present | Pass |
+| URL Tampering | User tries restricted pages | Access denied or redirected | Pass |
+
+### **Deployment & Webhooks**
+
+| Feature | Test Description | Expected Result | Pass/Fail |
+|----------|------------------|-----------------|-----------|
+| Stripe Webhook Delivery | Stripe sends test event | Heroku logs show 200 OK | Pass |
+| Environment Variables | Heroku config vars correct | App loads without errors | Pass |
+| Static & Media Files | S3 bucket serving files | Images load correctly | Pass |
