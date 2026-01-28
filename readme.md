@@ -303,9 +303,8 @@ The following smoke test was carried out on the live deployed site to confirm th
 | CRUD | Community Delete | Delete a post | Post is removed from list | Post deleted as requested with a message informing as such | Pass |
 | Basket | Add to Basket | Add item from Marketplace | Basket count updates; item appears in basket | Item appears in basket, and when quantity is updated it also updated in basket count in navbar | Pass |
 | Checkout | Successful Payment | Complete checkout with Stripe test card | Redirect to success page; order recorded | Redirected to success page and order recorded on account | Pass |
-| Validators | HTML/CSS Validation | Run W3C validators on key pages | No critical errors | | |
-| Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | | |
-
+| Validators | HTML/CSS Validation | Run W3C validators on key pages | No critical errors | base.html checked with one error and one warning, both of which ackowledged in README to be left. Full CSS file checked with no errors | Pass |
+| Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | ![Lighthouse testing results](static\images\LighthouseV2.png) | Pass |
 
 ## Fixing AWS
 
@@ -313,7 +312,7 @@ The following smoke test was carried out on the live deployed site to confirm th
 
 This project was updated to use Amazon S3 for hosting both static and media files in production. The following steps were completed to ensure Django, Heroku, and S3 work together correctly.
 
-## **1. Enabled S3 for Static and Media Files**
+### **1. Enabled S3 for Static and Media Files**
 
 Added an AWS configuration block in `settings.py` that activates when `USE_AWS=True` (set in Heroku Config Vars). This block:
 
@@ -330,7 +329,7 @@ This ensures:
 - **Media files** → uploaded to `media/` in S3  
 - Heroku no longer attempts to serve static/media locally  
 
-## **2. Created Custom Storage Backends**
+### **2. Created Custom Storage Backends**
 
 Added `custom_storages.py` with two classes:
 
@@ -341,7 +340,7 @@ Both classes disable ACLs and set correct S3 locations.
 
 This allows Django to route static and media files to the correct S3 folders.
 
-## **3. Fixed Static File Discovery in Production**
+### **3. Fixed Static File Discovery in Production**
 
 Heroku was not collecting static files because Django could not see the project’s `/static/` directory.
 
@@ -356,7 +355,7 @@ This was added to **both** the AWS and local development blocks.
 Result:  
 CSS, JS, and static images now upload correctly to S3 during Heroku builds.
 
-## **4. Corrected Template Static Paths**
+### **4. Corrected Template Static Paths**
 
 Some templates referenced static images using hard‑coded paths like:
 
@@ -370,7 +369,7 @@ These were updated to use Django’s static tag:
 
 This ensures Django rewrites URLs to the S3 domain in production.
 
-## **5. Fixed Media File Handling**
+### **5. Fixed Media File Handling**
 
 Gallery images and admin thumbnails were failing because:
 
@@ -382,7 +381,7 @@ After enabling `DEFAULT_FILE_STORAGE` and `MEDIA_URL`, new uploads correctly sav
 
 Older images were re‑uploaded so they exist in the S3 `media/` folder.
 
-## **6. Verified Heroku Build Behaviour**
+### **6. Verified Heroku Build Behaviour**
 
 During deployment:
 
@@ -392,7 +391,7 @@ During deployment:
 - The admin panel now loads correctly  
 - Gallery images display as expected  
 
-# **Outcome**
+## **Outcome**
 
 The project now uses a fully functional, production‑ready S3 setup:
 
@@ -403,3 +402,6 @@ The project now uses a fully functional, production‑ready S3 setup:
 - All templates reference static assets properly  
 
 This completes the migration from local file handling to cloud‑based storage.
+
+## Stripe Webhook Endpoint Testing
+
