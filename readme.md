@@ -6,10 +6,8 @@ Welcome to your home of all things aquascape, whether you're a beginner or a sea
 
 + A gallery on the home page to show off all the beautiful aquascapes that are possible with a little inspiration.
 + Links in the top navbar to all other pages described below. Links in the footer to social media pages.
-+ A tracker to allow customers to be able to see the development of their tanks, fish, plants and water parameters.
 + A marketplace for shopping all things aquascape, including but not limited to, tanks, plants, meds, tools, CO2 systems etc. (This will utilise Stripe payments)
 + A community hub for clients to post their wins, get advice and just generally chat all things aquascape. (This will utilise Django)
-+ Aquascape of the month will be a competion page for clients to pick their favorites with comments, likes and possibly prizes.
 
 ### Wireframe
 
@@ -20,7 +18,7 @@ This was a very organic build for me so this wireframe is extremely simple. Apol
 
 Below is an overview of the main models and their relationships in Aquascape Haven:
 
-![Schema](static\images\aquascape-schema.png)
+![Schema](static/images/aquascape-schema.png)
 
 ### User (Django default)
 - `id` (PK)
@@ -110,7 +108,7 @@ This schema covers users, gallery, community, marketplace, orders, and tank trac
 ### Dependencies and Credits
 
 This will be for dependencies as I go through this project - complete as they come through.
-+ [Bootstrap](https://getbootstrap.com/) has been used throughout the project to add items like a navbar, styling and a footer. I have annotated throughout the project, the key areas this has been used.
++ [Bootstrap](https://getbootstrap.com/) has been used throughout the project to add items like a navbar, styling and a footer. I have noted throughout the project, the key areas this has been used.
 + [Microsoft CoPilot](https://copilot.microsoft.com/) was used to create AI images to utilize for the Home page and some content in other areas. Also assisted for quick error diagnosis.
 + [Google Fonts](https://fonts.google.com/) used to import two font styles into the style.css file. Both fonts were attributed to the Root in CSS making the styles uniform across the site.
 + [Font Awesome](https://fontawesome.com/) used to import icons for social links in the footer section. Will most likely be used elsewhere too.
@@ -118,7 +116,7 @@ This will be for dependencies as I go through this project - complete as they co
 + [IloveIMG.com](https://www.iloveimg.com/) was used to compress all of my images to optimize page load up.
 + [Grammarly](https://app.grammarly.com/ddocs/2742182934) was used to check and correct all of the grammar on this README file.
 + [AWS](https://aws.amazon.com) was used for cloud storage and hosting services (S3 for media, Heroku integration).
-+ [Heroku](https://www.heroku.com/) Is my deployment site.
++ [Heroku](https://www.heroku.com/) is my deployment site.
 
 ## Deployment
 
@@ -177,7 +175,7 @@ Ensure you have the follwing pre requisites to start:
 4. Create the Heroku app either in the terminal or on the Heroku website, terminal commands below:
     + `heroku login`
     + `heroku create your-app-name`
-5. Set your environment variables as deomnstrated in .env.example .
+5. Set your environment variables as demonstrated in .env.example .
 6. Ensure you run the below commands in the terminal:
     + `python manage.py makemigrations`
     + `python manage.py migrate`
@@ -190,13 +188,13 @@ Ensure you have the follwing pre requisites to start:
 12. In the Heroku deploy tab, click the Deploy button and wait for it to run.
 13. Open App.
 + ![Screenshot of config vars on Heroku](static/images/config-vars.png)
-+ ![Screenshot of live homepage]()
++ ![Screenshot of live homepage](static\images\live-home.png)
 + ![Screenshot of .env.example file](static/images/envfileexample.png)
 
 ### Troubleshooting Heroku deployment:
 
-+ If your static files are not loading ensure you have the example config vars set up for `DISABLE_COLLECTSTATIC` and that you have run `python manage.py collectstatic` in your terminal before commiting and deploying your project.
-+ If youre database is not connecting make sure you have run your migrations by using `python manage.py migrate` in your terminal before commiting and deploying your project.
++ If your static files are not loading ensure you have the example config vars set up for `DISABLE_COLLECTSTATIC` and that you have run `python manage.py collectstatic` in your terminal before committing and deploying your project.
++ If youre database is not connecting make sure you have run your migrations by using `python manage.py migrate` in your terminal before committing and deploying your project.
 + If the Cloudinary images are not working make sure your config vars are set correctly and check your Cloudinary dashboard for usage issues.
 + If your app won't start you can run `heroku logs --tail` in the terminal to view error messages in the log or loook on the log on the Heroku dashboard.
 
@@ -206,7 +204,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### Automated testing:
 
-+ The first Django app I created was `gallery`, this is the simplest of all of my apps. The test I ran was simply to check both the model and the view to ensure the information being inputted was being read and fed back correctly. All of the tests for this came back perfectly. They can be found at: ![gallery] (gallery/tests.py)
++ The first Django app I created was `gallery`, this is the simplest of all of my apps. The test I ran was simply to check both the model and the view to ensure the information being inputted was being read and fed back correctly. All of the tests for this came back perfectly. They can be found at: ![gallery](gallery/tests.py)
 + The next app I tested was my `community` app which needed to be tested for both user authentication and posting requirements. I created three failing tests in my `community/tests/test_view.py` to test all of the above. The first issue i encountered was that i had linked the whole app up incorrectly. The initial correction to solve this was to back track a little and see if i could get the app working generally on the local server. Then the rest of the tests can be found at: ![Community](community/tests/test_view.py)
 
 ### Testing as a user for navigation purposes:
@@ -216,7 +214,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### Testing with validators:
 + First validator used was [W3Schools HMTL validator](https://validator.w3.org/#validate_by_input). Expecting possibly some missed slashes, but that should be all.
-    + Initial test for home page showed 11 errors, 4 errors regarding backslashes, 3 warnings for first occurunces and some others annotated below:
+    + Initial test for home page showed 11 errors, 4 errors regarding backslashes, 3 warnings for first occurrences and some others annotated below:
         + First issue regarding backslashes fixed by swapping to the right slash.
         + All errors regarding ID were fixed by simply removing them as they were not actually in use.
         + Finally I have a warning regarding a section with no header. This is by design as it creates cleaner code so i have left it.
@@ -227,7 +225,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 + Second validator used was [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input). Expecting some syntax errors as I haven't dived as deep on my CSS as I did on my HTML.
     + Two errors found and 21 warnings as described below:
         + First error was regarding a `size` i had put on my social links which is not a CSS property. Changed it to `font-size` as an actual property.
-        + Second error was because I had used `center` for a position value. This does not work in CSS. Swapped position out for display and margin to have the same affect with the Bootstrap utilities.
+        + Second error was because I had used `center` for a position value. This does not work in CSS. Swapped position out for display and margin to have the same effect with the Bootstrap utilities.
         + I had one warning because an imported file is in the CSS which can safely be ignored.
         + I had 20 warnings because I am using custom styles with the `--var` tag. Again these can be safely ignored.
 + Checked page using Chrome DevTools. Unsure what to expect, I think I have been pretty thorough with writing my code. I tested in an incognito window so that my personal extensions on Chrome did not affect the test.
@@ -247,7 +245,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 + All secret keys are handled through `.gitignore` initially, then with a `.env` file for local deployment, then finally through config vars in Heroku.
 + Data storage is done through Heroku and Cloudinary using secret keys as described above and PostgreSQL within config vars and `.env` file.
-+ I've used Crispy forms to generate unique tokens for each user session. Then each form has to include this token for Django to validate it. If the token is missing due to malicious information, or its invalid/missing, then the message will be automatically rejected thanks to Crispy forms.
++ I've used Crispy Forms to generate unique tokens for each user session. Then each form has to include this token for Django to validate it. If the token is missing due to malicious information, or it's invalid/missing, then the message will be automatically rejected thanks to Crispy forms.
 + I've also used `allauth` for user authentication to ensure that casual visitors or people with malicious intent cannot make adjustments or comments on the website.
 + `ALLOWED_HOSTS` is the first layer of security for my site as it tells Django which domain names are allowed to serve this application. In this case I have only used Heroku and localhost to limit malicious activity as much as possible.
 
@@ -257,12 +255,11 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 
 ### Competition page
 
-+ It is always important to admit when you have gone a little too far. When initially I created the idea for this page i thought it would be nice to have a page where people could post their tanks and compete at different levels for prizes. Unfortunately I never really got it to work properly, but also it was an unneccesary addition to a page that already had multiple levels and different app types. As a result of this and with some advice from my tutor I made the decision to remove the entire app and all associated links. The only issue this really caused was a lack of symmetry on the home page. If I was to go back to the page and go at it again I would definitely look to integrate a competition page but possibly matching it with the social section to merge it better.
++ It is always important to admit when you have gone a little too far. When initially I created the idea for this page i thought it would be nice to have a page where people could post their tanks and compete at different levels for prizes. Unfortunately I never really got it to work properly, but also it was an unnecesary addition to a page that already had multiple levels and different app types. As a result of this and with some advice from my tutor I made the decision to remove the entire app and all associated links. The only issue this really caused was a lack of symmetry on the home page. If I was to go back to the page and go at it again I would definitely look to integrate a competition page but possibly matching it with the social section to merge it better.
 
 ### Broken links
 
-+ The first links noticed by the examiners were the one in this README file. When I looked into the formatting for the image paths in this file i found that when i had right clicked to 'copy relative path' it had automatically put back slashes into the file path rather than forward slashes meaning the .md file couldn't properly read the path. Once I had found the source of that initial issue, it was easy to go through and correct the remaining paths within the README file.
-+ 
++ The first links noticed by the examiners were the one in this README file. When I looked into the formatting for the image paths in this file I found that when I had right clicked to 'copy relative path' it had automatically put back slashes into the file path rather than forward slashes meaning the .md file couldn't properly read the path. Once I had found the source of that initial issue, it was easy to go through and correct the remaining paths within the README file.
 
 ### Schema
 
@@ -275,7 +272,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 + Getting a screenshot of the edit and delete functions in action is more challenging than I thought it would be. I have added a screenshot of the messages that come up when in action though:
     + ![Testing functions](static\images\testing-crud.png)
 + Issue with loading images correctly through AWS cloud storage was due to me having not added the right policy in when setting it up originally. Once I added the policy into AWS S3 it was happy to load and show the images perfectly.
-+ Navigation issues for the marketplace section. I had realised that when looking at the detail view for products there was only a button for customers to be able to buy the product, but not a button for them to return to the marketplace to carry on shopping. Added that button meaning better UI navigation for the clients. I also mirrored this idea at the basket point for customers to be able to 'Continue shopping' after adding something to their basket without having to go back to the navbar.
++ Navigation issues for the marketplace section. I had realised that when looking at the detail view for products there was only a button for customers to be able to buy the product, but not a button for them to return to the marketplace to carry on shopping. Added that button meaning better UI navigation for the clients. I also mirrored this idea at the basket page for customers to be able to 'Continue shopping' after adding something to their basket without having to go back to the navbar.
 + To bolster the navigation issues found in previous testing I have manually worked through the payment process and ensured I can go through the whole process from start to finish.
 
 ### Authentication
@@ -470,10 +467,10 @@ This demonstrates:
 
 ### Screenshots relevant to the above testing:
 
-+ ![Stripe Endpoint sandbox](static\images\stripe-endpoint.png)
-+ ![Stripe event locations](static\images\stripe-events.png)
-+ ![Successful stripe events](static\images\stripe-success.png)
-+ ![Successful Stripe log in Heroku](static\images\stripe-success-log.png)
++ ![Stripe Endpoint sandbox](static/images/stripe-endpoint.png)
++ ![Stripe event locations](static/images/stripe-events.png)
++ ![Successful stripe events](static/images/stripe-success.png)
++ ![Successful Stripe log in Heroku](static/images/stripe-success-log.png)
 
 ## **Manual Test Matrix (With Verified Pass/Fail)**
 
@@ -491,7 +488,7 @@ This demonstrates:
 | Webhook Processing | Stripe sends `payment_intent.succeeded` | Webhook returns 200 and logs success | Pass |
 
 *Screenshots for the above, not covered previously*
-+ ![Stripe failure](static\images\stripe-failure.png)
++ ![Stripe failure](static/images/stripe-failure.png)
 
 ### **User Accounts & Authentication**
 
