@@ -16,5 +16,4 @@ urlpatterns = [
     path('community/', include(('community.urls', 'community'), namespace='community')),
     path('gallery/', include('gallery.urls')),
     path('marketplace/', include(('marketplace.urls', 'marketplace'), namespace='marketplace')),
-    path('success/', TemplateView.as_view(template_name='checkout/success.html'), name='success'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

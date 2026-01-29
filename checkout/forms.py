@@ -9,3 +9,7 @@ class OrderForm(forms.ModelForm):
             'street_address1', 'street_address2', 'town_or_city',
             'county', 'postcode', 'country',
         )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'email' in self.fields:
+            self.fields['email'].widget.attrs['readonly'] = True

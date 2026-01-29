@@ -52,6 +52,8 @@ def checkout(request):
         payment_intent_id = request.POST.get('payment_intent_id')
         if form.is_valid():
             order = form.save(commit=False)
+            if request.user.is_authenticated:
+                order.email = request.user.email
             try:
                 order.total = grand_total
             except Exception:
@@ -80,7 +82,12 @@ def checkout(request):
                            "There was an error with your form.\
                            Please double check your information.")
     else:
-        form = OrderForm()
+        if request.user.is_authenticated:
+            form = OrderForm(initial={
+                'email': request.user.email,
+            })
+        else:
+            form = OrderForm()
 
     amount = int((grand_total * Decimal('100')).to_integral_value())
     intent = stripe.PaymentIntent.create(
