@@ -1,6 +1,10 @@
+![Favicon logo](static/images/favicon-32x32.png)
 # Aquascape Haven
 
 Welcome to your home of all things aquascape, whether you're a beginner or a seasoned veteran this is your space to get inspiration, tips and help with your fish, plants and more!
+
+![Example final design](static/images/example-finished-design.png)
+![Live Page](https://aquascape-haven-e3d516166de9.herokuapp.com/) | ![GitHub Repo Link](https://github.com/14sammie41/aquascape-haven)
 
 ## User requirements:
 
@@ -17,8 +21,6 @@ This was a very organic build for me so this wireframe is extremely simple. Apol
 ## Database Schema
 
 Below is an overview of the main models and their relationships in Aquascape Haven:
-
-![Schema](static/images/aquascape-schema.png)
 
 ### User (Django default)
 - `id` (PK)
@@ -77,24 +79,14 @@ Below is an overview of the main models and their relationships in Aquascape Hav
 - `quantity`
 - `price`
 
-### Tracker
-- `id` (PK)
-- `user` (FK to User)
-- `tank_name`
-- `fish`
-- `plants`
-- `water_parameters` (JSONField or TextField)
-- `created_at`
-- `updated_at`
-
----
-
 **Legend:**  
 - PK = Primary Key  
 - FK = Foreign Key  
 - ManyToManyField = Many-to-many relationship
 
-This schema covers users, gallery, community, marketplace, orders, and tank tracking.
+![ERD](static/images/ERD.png)
+
+This schema covers users, community, marketplace and orders. I realised a little too late that I had added the Gallery into the text based schema but forgot to add it into the ERD.
 
 ## Tech Stack
 
@@ -104,19 +96,6 @@ This schema covers users, gallery, community, marketplace, orders, and tank trac
 - **Deployment**: Heroku
 - **Storage**: AWS S3 for media files
 - **Version Control**: Git & GitHub
-
-### Dependencies and Credits
-
-This will be for dependencies as I go through this project - complete as they come through.
-+ [Bootstrap](https://getbootstrap.com/) has been used throughout the project to add items like a navbar, styling and a footer. I have noted throughout the project, the key areas this has been used.
-+ [Microsoft CoPilot](https://copilot.microsoft.com/) was used to create AI images to utilize for the Home page and some content in other areas. Also assisted for quick error diagnosis.
-+ [Google Fonts](https://fonts.google.com/) used to import two font styles into the style.css file. Both fonts were attributed to the Root in CSS making the styles uniform across the site.
-+ [Font Awesome](https://fontawesome.com/) used to import icons for social links in the footer section. Will most likely be used elsewhere too.
-+ [Favicon.io](https://favicon.io/#google_vignette) used to create a simple favicon with the correct colors and fonts as used throughout the site. Then link to each page.
-+ [IloveIMG.com](https://www.iloveimg.com/) was used to compress all of my images to optimize page load up.
-+ [Grammarly](https://app.grammarly.com/ddocs/2742182934) was used to check and correct all of the grammar on this README file.
-+ [AWS](https://aws.amazon.com) was used for cloud storage and hosting services (S3 for media, Heroku integration).
-+ [Heroku](https://www.heroku.com/) is my deployment site.
 
 ## Deployment
 
@@ -188,7 +167,7 @@ Ensure you have the follwing pre requisites to start:
 12. In the Heroku deploy tab, click the Deploy button and wait for it to run.
 13. Open App.
 + ![Screenshot of config vars on Heroku](static/images/config-vars.png)
-+ ![Screenshot of live homepage](static\images\live-home.png)
++ ![Screenshot of live homepage](static/images/live-home.png)
 + ![Screenshot of .env.example file](static/images/envfileexample.png)
 
 ### Troubleshooting Heroku deployment:
@@ -197,6 +176,12 @@ Ensure you have the follwing pre requisites to start:
 + If youre database is not connecting make sure you have run your migrations by using `python manage.py migrate` in your terminal before committing and deploying your project.
 + If the Cloudinary images are not working make sure your config vars are set correctly and check your Cloudinary dashboard for usage issues.
 + If your app won't start you can run `heroku logs --tail` in the terminal to view error messages in the log or loook on the log on the Heroku dashboard.
+
+### Screenshots to attribute to admin, superuser etc:
++ Access to the below is for superusers only for site integrity and security.
++ ![Admin Home](static/images/admin-home.png)
++ ![User limits](static/images/user-limits.png)
++ ![Order details](static/images/order-admin.png)
 
 ## Testing
 
@@ -222,12 +207,14 @@ As I have been testing most aspects as I write the code for the site, I am hopin
     + Initial test for competition page showed only the warning from the section with no header, which as above will be left.
     + Initial test for gallery page showed only the warning from the section with no header, which as above will be left.
     + Initial test for marketplace page showed only the warning from the section with no header, which as above will be left.
+    + ![Screenshot as proof](static/images/html-validator.png)
 + Second validator used was [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input). Expecting some syntax errors as I haven't dived as deep on my CSS as I did on my HTML.
     + Two errors found and 21 warnings as described below:
         + First error was regarding a `size` i had put on my social links which is not a CSS property. Changed it to `font-size` as an actual property.
         + Second error was because I had used `center` for a position value. This does not work in CSS. Swapped position out for display and margin to have the same effect with the Bootstrap utilities.
         + I had one warning because an imported file is in the CSS which can safely be ignored.
         + I had 20 warnings because I am using custom styles with the `--var` tag. Again these can be safely ignored.
+    + ![Screenshot as proof](static/images/css-validator.png)
 + Checked page using Chrome DevTools. Unsure what to expect, I think I have been pretty thorough with writing my code. I tested in an incognito window so that my personal extensions on Chrome did not affect the test.
     + Lighthouse shows a performance score of:
         - 67 for Performance
@@ -249,7 +236,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 + I've also used `allauth` for user authentication to ensure that casual visitors or people with malicious intent cannot make adjustments or comments on the website.
 + `ALLOWED_HOSTS` is the first layer of security for my site as it tells Django which domain names are allowed to serve this application. In this case I have only used Heroku and localhost to limit malicious activity as much as possible.
 
-## Re submission follow ups:
+## Reflections
 
 + As a result of some broken links I have been requested to do a resubmission, please see all following notes for what was done in this period.
 
@@ -268,9 +255,9 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 ### CRUD
 
 + The 'Update' and 'Delete' aspects of my community posts were not working and were lacking on the posts themselves for logged in users. The first fix for this was to add the buttons for logged in users on their own posts. I also made sure to use Bootstrap styling to clean the look generally. See below for screenshots of those edits in action:
-    + ![Testing buttons](static\images\testing-community.png)
+    + ![Testing buttons](static/images/testing-community.png)
 + Getting a screenshot of the edit and delete functions in action is more challenging than I thought it would be. I have added a screenshot of the messages that come up when in action though:
-    + ![Testing functions](static\images\testing-crud.png)
+    + ![Testing functions](static/images/testing-crud.png)
 + Issue with loading images correctly through AWS cloud storage was due to me having not added the right policy in when setting it up originally. Once I added the policy into AWS S3 it was happy to load and show the images perfectly.
 + Navigation issues for the marketplace section. I had realised that when looking at the detail view for products there was only a button for customers to be able to buy the product, but not a button for them to return to the marketplace to carry on shopping. Added that button meaning better UI navigation for the clients. I also mirrored this idea at the basket page for customers to be able to 'Continue shopping' after adding something to their basket without having to go back to the navbar.
 + To bolster the navigation issues found in previous testing I have manually worked through the payment process and ensured I can go through the whole process from start to finish.
@@ -278,7 +265,7 @@ As I have been testing most aspects as I write the code for the site, I am hopin
 ### Authentication
 
 + I had an issue with authenticated users being able to navigate to the log in page when already logged in. This was easily fixed using an accounts app and a full redirect to home page with a message to explain that this is what was happening. You can see screenshots of it in action below:
-    + ![Authentication testing](static\images\authentication-testing.png)
+    + ![Authentication testing](static/images/authentication-testing.png)
 
 ### Navigation Smoke Test:
 
@@ -301,7 +288,7 @@ The following smoke test was carried out on the live deployed site to confirm th
 | Basket | Add to Basket | Add item from Marketplace | Basket count updates; item appears in basket | Item appears in basket, and when quantity is updated it also updated in basket count in navbar | Pass |
 | Checkout | Successful Payment | Complete checkout with Stripe test card | Redirect to success page; order recorded | Redirected to success page and order recorded on account | Pass |
 | Validators | HTML/CSS Validation | Run W3C validators on key pages | No critical errors | base.html checked with one error and one warning, both of which ackowledged in README to be left. Full CSS file checked with no errors | Pass |
-| Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | ![Lighthouse testing results](static\images\LighthouseV2.png) | Pass |
+| Lighthouse | Performance & Accessibility | Run Lighthouse on home + key pages | Acceptable scores (e.g. >70) | ![Lighthouse testing results](static/images/LighthouseV2.png) | Pass |
 
 ## Fixing AWS
 
@@ -549,3 +536,54 @@ This demonstrates:
 | Stripe Webhook Delivery | Stripe sends test event | Heroku logs show 200 OK | Pass |
 | Environment Variables | Heroku config vars correct | App loads without errors | Pass |
 | Static & Media Files | S3 bucket serving files | Images load correctly | Pass |
+
+## Accessibility
+
+Accessibility was a core consideration throughout the design and development of this project. The goal was to ensure that users of all abilities can navigate, understand, and interact with the site effectively. The following measures were implemented to support an inclusive user experience:
+
+### Semantic HTML Structure
++ Pages are built using semantic HTML elements such as `<header>`, `<nav>`, `<main>`, `<section>` and `<footer>`.
++ This improves screen-reader navigation and helps assistive technologies understand the structure of each page.
+
+### Keyboard Navigation
++ All interactive elements (buttons, link, forms) are accessible via keyboard using the standard `Tab`, `Shift + Tab` and `Enter` keys.
++ No custom components block or trap keyboard focus.
++ Form fields follow a logical tab order.
+
+### Colour Contrast
++ Colours were chosen to meet WCAG AA contrast guidelines.
++ Test is readable against backgrounds, including buttons, alerts, and navigation elements.
++ Visual cues (such as borders and icons) are used in addition to colour to convey meaning.
+
+### Alt Text for Images
++ All menaingful images include descriptive `alt` attributes.
+
+### ARIA Labels and Roles
++ ARIA attributes are used where necessary to improve clarity for assistive technologies.
+
+### Form Accessibility
++ All form field include associated `<label>` elements.
++ Error messages are displayed clearly and linked to the relevant fields.
++ Required fields are indicated visually and programmatically.
+
+### Responsive Design
++ The site is fully responsive accross mobile, tablet, and desktop screen sizes.
++ Layouts adapt without horizontal scrolling, ensuring usability on all devices.
++ Touch targets are large enough for mobile users.
+
+### Consistent Navigation
++ The navigation and footer bars are consistent across all pages.
++ Active page indicators help users understand their location within the site.
+
+## Dependencies and Credits
+
+This will be for dependencies as I go through this project - complete as they come through.
++ [Bootstrap](https://getbootstrap.com/) has been used throughout the project to add items like a navbar, styling and a footer. I have noted throughout the project, the key areas this has been used.
++ [Microsoft CoPilot](https://copilot.microsoft.com/) was used to create AI images to utilize for the Home page and some content in other areas. Also assisted for quick error diagnosis.
++ [Google Fonts](https://fonts.google.com/) used to import two font styles into the style.css file. Both fonts were attributed to the Root in CSS making the styles uniform across the site.
++ [Font Awesome](https://fontawesome.com/) used to import icons for social links in the footer section. Will most likely be used elsewhere too.
++ [Favicon.io](https://favicon.io/#google_vignette) used to create a simple favicon with the correct colors and fonts as used throughout the site. Then link to each page.
++ [IloveIMG.com](https://www.iloveimg.com/) was used to compress all of my images to optimize page load up.
++ [Grammarly](https://app.grammarly.com/ddocs/2742182934) was used to check and correct all of the grammar on this README file.
++ [AWS](https://aws.amazon.com) was used for cloud storage and hosting services (S3 for media, Heroku integration).
++ [Heroku](https://www.heroku.com/) is my deployment site.
