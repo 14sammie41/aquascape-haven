@@ -6,6 +6,35 @@ Welcome to your home of all things aquascape, whether you're a beginner or a sea
 ![Example final design](static/images/example-finished-design.png)
 ![Live Page](https://aquascape-haven-e3d516166de9.herokuapp.com/) | ![GitHub Repo Link](https://github.com/14sammie41/aquascape-haven)
 
+## Table of Contents
+
+- [User Requirements](#user-requirements)
+- [Wireframe](#wireframe)
+- [Database Schema](#database-schema)
+- [Tech Stack](#tech-stack)
+- [Deployment](#deployment)
+  - [Setup Instructions](#setup-instructions)
+  - [Heroku and Live Deployment](#for-heroku-and-live-deployment)
+  - [Troubleshooting Heroku Deployment](#troubleshooting-heroku-deployment)
+- [Testing](#testing)
+  - [Automated Testing](#automated-testing)
+  - [User Navigation Testing](#testing-as-a-user-for-navigation-purposes)
+  - [Validators](#testing-with-validators)
+  - [Lighthouse](#lighthouse)
+  - [CI Linter](#checked-all-python-code-with-ci-linter)
+  - [Manual Test Matrix](#manual-test-matrix-with-verified-passfail)
+- [Security](#security)
+- [Fixing AWS](#fixing-aws)
+- [Stripe Webhook Endpoint Testing](#stripe-webhook-endpoint-testing)
+- [Reflections](#reflections)
+  - [Competition Page](#competition-page)
+  - [Broken Links](#broken-links)
+  - [Schema](#schema)
+  - [CRUD](#crud)
+  - [Authentication](#authentication)
+  - [Navigation Smoke Test](#navigation-smoke-test)
+
+
 ## User requirements:
 
 + A gallery on the home page to show off all the beautiful aquascapes that are possible with a little inspiration.
